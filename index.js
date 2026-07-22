@@ -2,15 +2,24 @@
 
 console.log("habittrackersetup");
 
+
+
 let habitData = JSON.parse(localStorage.getItem("habits")) || [];
 console.log(habitData);
 
-window.addEventListener("load", () => {});
+window.addEventListener("load", () => {
+    console.log("window load event fired");
+    handleListBuild();
+});
+
+
 
 const addHabitButton = document.getElementById("add-habit-button");
 const habitForm = document.getElementById("habit-form");
 const habitInput = document.getElementById("habit-input");
 const habitContainer = document.getElementById("habit-container");
+
+
 
 // Icons
 
@@ -41,12 +50,14 @@ addHabitButton.addEventListener("click", () => {
   };
   habitData.push(newHabit);
 
+  
+
   const newHabitHTML = `
     <div class="box" id="${newHabit.id}">
 
     <div class="w-full max-w-sm shadow-xl rounded-lg p-6 bg-white mt-6 ml-6">
     <div class="mb-2">
-   <span id="habitId-${newHabit.id}">${newHabit.name}</span>
+   <span id="habitId-${newHabit.id}" class="edu-font">${newHabit.name}</span>
    </div>
         <button id="complete-${newHabit.id}" class="complete-habit-button bg-green-400 text-white py-2 px-4 rounded hover:bg-green-500 transition duration-200" onclick="onCompleteClick('${newHabit.id}')">${checkIcon}</button>
       
@@ -59,6 +70,8 @@ addHabitButton.addEventListener("click", () => {
 // Append new habit to the habit container
 habitContainer.insertAdjacentHTML("beforeend", newHabitHTML);
 
+console.log(habitContainer);
+
 // Add habit data to localStorage
 localStorage.setItem("habits", JSON.stringify(habitData));
 // Clear input field
@@ -68,3 +81,34 @@ habitInput.value = ""
 
 
 // Funtion to repopulate habit list on page load
+const handleListBuild = () => {
+    console.log("handleListBuild called");
+
+    
+    habitContainer.innerHTML = "";
+
+    habitData.forEach(habit => {
+
+        let completedClass = "";
+
+        if (habit.completed) {
+            completedClass = "line-through text-gray-400";
+            // Style for now. may want to update the button to a "completed" state or remove it from the list.
+        }
+    
+       
+    
+        const listHabits = `
+        <div class="box" id="${habit.id}">
+        <div class="w-full max-w-sm shadow-xl rounded-lg p-6 bg-white mt-6 ml-6">
+        <div class="mb-2">
+       <span id="habitId-${habit.id}" class="edu-font ${completedClass}">${habit.name}</span>
+       </div>
+            <button id="complete-${habit.id}" class="complete-habit-button bg-green-400 text-white py-2 px-4 rounded hover:bg-green-500 transition duration-200" onclick="onCompleteClick('${habit.id}')">${checkIcon}</button>` 
+
+           habitContainer.insertAdjacentHTML("beforeend", listHabits);
+
+    });
+
+};
+    handleListBuild();
