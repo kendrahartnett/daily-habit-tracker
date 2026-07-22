@@ -1,0 +1,32 @@
+@keyframes growing-grass-ans--3 {
+  0% {
+    transform-origin: bottom left;
+    transform: rotate(-18deg) rotateX(-20deg) scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform-origin: bottom left;
+    transform: rotate(-18deg) rotateX(-20deg) scale(1);
+    opacity: 1;
+  }
+}
+
+.flower-bloom {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    transform-origin: bottom center;
+    animation: growing-grass-ans--3 1.5s ease forwards;
+}
+
+/* simple flower styling */
+.flower-bloom::before {
+    content: "🌸";
+   font-size: 64px;
+   position: absolute;
+   bottom: 0;
+   left: 50%;
+    transform: translateX(-50%);
+}
+
+

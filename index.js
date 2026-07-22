@@ -6,7 +6,7 @@ let habitData = JSON.parse(localStorage.getItem("habits")) || [];
 console.log(habitData);
 
 window.addEventListener("load", () => {
-  console.log("window load event fired");
+//   console.log("window load event fired");
   handleListBuild();
 });
 
@@ -14,6 +14,8 @@ const addHabitButton = document.getElementById("add-habit-button");
 const habitForm = document.getElementById("habit-form");
 const habitInput = document.getElementById("habit-input");
 const habitContainer = document.getElementById("habit-container");
+const completedContainer = document.getElementById("completed-container");
+const garden = document.getElementById("garden");
 
 // Icons
 
@@ -61,12 +63,13 @@ addHabitButton.addEventListener("click", () => {
   // Append new habit to the habit container
   habitContainer.insertAdjacentHTML("beforeend", newHabitHTML);
 
-  console.log(habitContainer);
+//   console.log(habitContainer);
 
   // Add habit data to localStorage
   localStorage.setItem("habits", JSON.stringify(habitData));
   // Clear input field
   habitInput.value = "";
+  
 });
 
 // Funtion to repopulate habit list on page load
@@ -74,14 +77,24 @@ const handleListBuild = () => {
   console.log("handleListBuild called");
 
   habitContainer.innerHTML = "";
+  completedContainer.innerHTML = "";
 
   habitData.forEach((habit) => {
     let completedClass = "";
 
     if (habit.completed) {
-      completedClass = "line-through text-gray-400";
-      // Style for now. may want to update the button to a "completed" state or remove it from the list.
-    }
+      completedClass = "text-gray-400";
+         const completedHabitHTML = `
+             <div class="box" id="${habit.id}">
+        <div class="w-full max-w-sm shadow-xl rounded-lg p-6 bg-white mt-6 ml-6">
+        <div class="mb-2">
+       <span id="habitId-${habit.id}" class="edu-font ${completedClass}">${habit.name}</span>
+       </div>
+        `;
+
+        completedContainer.insertAdjacentHTML("beforeend", completedHabitHTML);
+      
+    } else {
 
     const listHabits = `
         <div class="box" id="${habit.id}">
@@ -93,7 +106,41 @@ const handleListBuild = () => {
             
             <button id="delete-${habit.id}" class="delete-habit-button bg-green-400 text-white py-2 px-4 rounded hover:bg-green-500 transition duration-200" onclick="onDeleteClick('${habit.id}')">${trashIcon}</button>`;
 
-    habitContainer.insertAdjacentHTML("beforeend", listHabits);
+    habitContainer.insertAdjacentHTML("beforeend", listHabits);}
   });
 };
 handleListBuild();
+
+// Flower bloom animation when habit is completed
+const bloomFlower = () => {
+  const flower = document.createElement("div");
+  flower.classList.add("flower-bloom");
+  document.getElementById("garden").appendChild(flower);
+   setTimeout(() => {
+        flower.remove();
+    }, 3000); // remove after 3 seconds
+};
+
+let doneHabit = "";
+
+
+
+// Habit completion handler
+const onCompleteClick = (habitId) => {
+  console.log(`Complete button clicked for habit ID: ${habitId}`);
+  const habitIndex = habitData.findIndex((habit) => habit.id === habitId);
+
+  const habit = habitData[habitIndex];
+
+if (!habit.completed) {
+    habit.completed = true;
+    bloomFlower();
+     doneHabit = habitData[habitIndex];
+    localStorage.setItem("habits", JSON.stringify(habitData));
+    habitContainer.innerHTML = "";
+    handleListBuild();
+}
+
+
+};
+
