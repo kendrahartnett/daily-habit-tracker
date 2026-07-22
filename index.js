@@ -2,24 +2,18 @@
 
 console.log("habittrackersetup");
 
-
-
 let habitData = JSON.parse(localStorage.getItem("habits")) || [];
 console.log(habitData);
 
 window.addEventListener("load", () => {
-    console.log("window load event fired");
-    handleListBuild();
+  console.log("window load event fired");
+  handleListBuild();
 });
-
-
 
 const addHabitButton = document.getElementById("add-habit-button");
 const habitForm = document.getElementById("habit-form");
 const habitInput = document.getElementById("habit-input");
 const habitContainer = document.getElementById("habit-container");
-
-
 
 // Icons
 
@@ -46,11 +40,8 @@ addHabitButton.addEventListener("click", () => {
     // frequency: "daily", // or "weekly", "monthly"
     // completedToday: false, // to track if the habit was completed today
     // streak: 0, // to track the number of consecutive days the habit has been completed
-   
   };
   habitData.push(newHabit);
-
-  
 
   const newHabitHTML = `
     <div class="box" id="${newHabit.id}">
@@ -66,49 +57,43 @@ addHabitButton.addEventListener("click", () => {
     </div>
      
     </div>
-`
-// Append new habit to the habit container
-habitContainer.insertAdjacentHTML("beforeend", newHabitHTML);
+`;
+  // Append new habit to the habit container
+  habitContainer.insertAdjacentHTML("beforeend", newHabitHTML);
 
-console.log(habitContainer);
+  console.log(habitContainer);
 
-// Add habit data to localStorage
-localStorage.setItem("habits", JSON.stringify(habitData));
-// Clear input field
-habitInput.value = ""
+  // Add habit data to localStorage
+  localStorage.setItem("habits", JSON.stringify(habitData));
+  // Clear input field
+  habitInput.value = "";
 });
-
-
 
 // Funtion to repopulate habit list on page load
 const handleListBuild = () => {
-    console.log("handleListBuild called");
+  console.log("handleListBuild called");
 
-    
-    habitContainer.innerHTML = "";
+  habitContainer.innerHTML = "";
 
-    habitData.forEach(habit => {
+  habitData.forEach((habit) => {
+    let completedClass = "";
 
-        let completedClass = "";
+    if (habit.completed) {
+      completedClass = "line-through text-gray-400";
+      // Style for now. may want to update the button to a "completed" state or remove it from the list.
+    }
 
-        if (habit.completed) {
-            completedClass = "line-through text-gray-400";
-            // Style for now. may want to update the button to a "completed" state or remove it from the list.
-        }
-    
-       
-    
-        const listHabits = `
+    const listHabits = `
         <div class="box" id="${habit.id}">
         <div class="w-full max-w-sm shadow-xl rounded-lg p-6 bg-white mt-6 ml-6">
         <div class="mb-2">
        <span id="habitId-${habit.id}" class="edu-font ${completedClass}">${habit.name}</span>
        </div>
-            <button id="complete-${habit.id}" class="complete-habit-button bg-green-400 text-white py-2 px-4 rounded hover:bg-green-500 transition duration-200" onclick="onCompleteClick('${habit.id}')">${checkIcon}</button>` 
+            <button id="complete-${habit.id}" class="complete-habit-button bg-green-400 text-white py-2 px-4 rounded hover:bg-green-500 transition duration-200" onclick="onCompleteClick('${habit.id}')">${checkIcon}</button>
+            
+            <button id="delete-${habit.id}" class="delete-habit-button bg-green-400 text-white py-2 px-4 rounded hover:bg-green-500 transition duration-200" onclick="onDeleteClick('${habit.id}')">${trashIcon}</button>`;
 
-           habitContainer.insertAdjacentHTML("beforeend", listHabits);
-
-    });
-
+    habitContainer.insertAdjacentHTML("beforeend", listHabits);
+  });
 };
-    handleListBuild();
+handleListBuild();
