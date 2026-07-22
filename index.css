@@ -1,3 +1,11 @@
-body {
+
+/* body {
     background-color: rgb(237, 207, 240);
+} */
+
+
+.box {
+    display: flex;
+   flex-wrap: wrap;
+
 }
