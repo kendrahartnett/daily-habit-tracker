@@ -25,7 +25,7 @@ addHabitButton.addEventListener("click", () => {
   habitData.push(newHabit);
 
   const newHabitHTML = `
-    <div class="habit" id="${newHabit.id}">
+    <div class="habit box" id="${newHabit.id}">
 
     <div class="w-full max-w-sm shadow-xl rounded-lg p-6 bg-white mt-6 ml-6">
    <span id="habitId-${newHabit.id}">${newHabit.name}</span>
