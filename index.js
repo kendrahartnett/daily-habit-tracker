@@ -14,6 +14,7 @@ const addHabitButton = document.getElementById("add-habit-button");
 const habitForm = document.getElementById("habit-form");
 const habitInput = document.getElementById("habit-input");
 const habitContainer = document.getElementById("habit-container");
+const garden = document.getElementById("garden");
 
 // Icons
 
@@ -97,3 +98,15 @@ const handleListBuild = () => {
   });
 };
 handleListBuild();
+
+const bloomFlower = () => {
+  const flower = document.createElement("div");
+  flower.classList.add("flower-bloom");
+  document.getElementById("garden").appendChild(flower);
+};
+
+checkbox.addEventListener("change", () => {
+  if (checkbox.checked) {
+    bloomFlower();
+  }
+})

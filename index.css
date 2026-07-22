@@ -14,3 +14,34 @@
   font-style: normal;
 }
 
+.garden {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    min-height: 120px;
+    margin-top: 2rem;
+    padding: 1rem;
+    border-top: 1px solid #d6e4d6
+}
+
+.flower {
+    width: 60px;
+    height: 60px;
+    transform-origin: bottom center;
+    animation: bloom 1.2s ease forwards;
+    /* background-color: rgb(134, 231, 127); */
+}
+
+@keyframes bloom {
+    0% {
+        transform: scale(0) rotate(-20deg);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.15) rotate(5deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
