@@ -3,27 +3,69 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
- <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
-
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-<script src="https://cdn.tailwindcss.com"></script>
-
     <link rel="stylesheet" href="index.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <title>Daily Habit Tracker</title>
-
   </head>
-  <body>
 
+  <body class="bg-slate-100 min-h-screen">
+    <header class="bg-green-400 text-white p-6 shadow-md">
+      <h1 class="text-3xl font-bold">Bloom - Daily Habit Tracker</h1>
+      <p class="text-md italic">Small habits. Big growth.</p>
+    </header>
 
-    <body class="bg-gray-100 min-h-screen">
-  <header class="bg-blue-600 text-white p-6 shadow-md">
-    <h1 class="text-3xl font-bold">Daily Habit Tracker</h1>
-  </header>
+    <p class="ml-6 mt-2 text-sm">
+      Track your daily habits and stay on top of your goals!
+    </p>
 
-    <p class="p-6">Track your daily habits and stay on top of your goals!</p>
+    <!-- Add Habit form section -->
+
+    <div class="flex flex-col items-center mt-2">
+      <div
+        class="w-full max-w-sm shadow-2xl rounded-lg p-6 bg-white mt-6 mb-6 ml-6"
+      >
+        <h2 class="text-md font-semibold mb-4">Add a New Habit</h2>
+        <form id="habit-form" class="flex flex-col gap-4">
+          <input
+            type="text"
+            id="habit-input"
+            placeholder="Enter habit here..."
+            class="border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+          />
+          <button
+            type="button"
+            id="add-habit-button"
+            class="bg-green-400 text-white py-2 px-4 rounded hover:bg-green-500 transition duration-200"
+          >
+            Add Habit
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Read/View Habits section -->
+
+    <div class="box" id="habit-container">
+      <div class="w-full max-w-sm shadow-xl rounded-lg p-6 bg-white mt-6 ml-6">
+        Habit #1
+      </div>
+      <div class="w-full max-w-sm shadow-xl rounded-lg p-6 bg-white mt-6 ml-6">
+        Habit #2
+      </div>
+      <div class="w-full max-w-sm shadow-xl rounded-lg p-6 bg-white mt-6 ml-6">
+        Habit #3
+      </div>
+
+      <!-- Habit items will be dynamically added here -->
+    </div>
 
     <script type="text/javascript" src="index.js"></script>
   </body>
