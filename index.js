@@ -6,7 +6,7 @@ let habitData = JSON.parse(localStorage.getItem("habits")) || [];
 console.log(habitData);
 
 window.addEventListener("load", () => {
-  console.log("window load event fired");
+//   console.log("window load event fired");
   handleListBuild();
 });
 
@@ -63,12 +63,13 @@ addHabitButton.addEventListener("click", () => {
   // Append new habit to the habit container
   habitContainer.insertAdjacentHTML("beforeend", newHabitHTML);
 
-  console.log(habitContainer);
+//   console.log(habitContainer);
 
   // Add habit data to localStorage
   localStorage.setItem("habits", JSON.stringify(habitData));
   // Clear input field
   habitInput.value = "";
+  
 });
 
 // Funtion to repopulate habit list on page load
@@ -110,27 +111,36 @@ const handleListBuild = () => {
 };
 handleListBuild();
 
+// Flower bloom animation when habit is completed
 const bloomFlower = () => {
   const flower = document.createElement("div");
   flower.classList.add("flower-bloom");
   document.getElementById("garden").appendChild(flower);
+   setTimeout(() => {
+        flower.remove();
+    }, 3000); // remove after 3 seconds
 };
 
 let doneHabit = "";
 
+
+
+// Habit completion handler
 const onCompleteClick = (habitId) => {
   console.log(`Complete button clicked for habit ID: ${habitId}`);
   const habitIndex = habitData.findIndex((habit) => habit.id === habitId);
 
-  if (doneHabit === "") {
-    doneHabit = "completed";
-    habitData[habitIndex].completed = true;
-    bloomFlower();
-    doneHabit = habitData[habitIndex];
-    localStorage.setItem("habits", JSON.stringify(habitData));
+  const habit = habitData[habitIndex];
 
+if (!habit.completed) {
+    habit.completed = true;
+    bloomFlower();
+     doneHabit = habitData[habitIndex];
+    localStorage.setItem("habits", JSON.stringify(habitData));
     habitContainer.innerHTML = "";
     handleListBuild();
-  }
+}
+
+
 };
 
