@@ -12,6 +12,30 @@ const habitInput = document.getElementById("habit-input");
 const habitContainer = document.getElementById("habit-container");
 const completedContainer = document.getElementById("completed-container");
 const garden = document.getElementById("garden");
+const selectedFrequency = document.querySelector(
+  'input[name="frequency"]:checked',
+);
+
+const buildHabitCard = (habit) => {
+
+     let completedClass = "";
+
+    if (habit.completed) {
+        completedClass = "text-gray-400 line-through";
+    }
+  return `
+        <div class="box" id="${habit.id}">
+        <div class="w-full max-w-sm shadow-xl rounded-lg p-6 bg-white mt-6 ml-6">
+        <div class="mb-2">
+        <span class="">
+       <span id="habitId-${habit.id}" class="edu-font ${completedClass}">${habit.name}</span>
+       </div>
+       <button id="complete-${habit.id}" class="complete-habit-button bg-green-400 text-white py-2 px-4 rounded hover:bg-green-500 transition duration-200" onclick="onCompleteClick('${habit.id}')">${checkIcon}</button>
+       <button id="delete-${habit.id}" class="delete-habit-button bg-green-400 text-white py-2 px-4 rounded hover:bg-green-500 transition duration-200" onclick="onDeleteClick('${habit.id}')">${trashIcon}</button>
+       </div>
+       </div>
+    `;
+};
 
 // Habit Icons
 const checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -22,18 +46,28 @@ const trashIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill=
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
 </svg>`;
 
+const starIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674"></path> />`
+
 //Add habit button click event listener
 addHabitButton.addEventListener("click", () => {
-  console.log("Add Habit button clicked");
+  //   console.log("Add Habit button clicked");
+  const selectedFrequency = document.querySelector(
+    'input[name="frequency"]:checked',
+  );
+
+  console.log("selectedFrequency:", selectedFrequency);
+  console.log("selectedFrequency.value:", selectedFrequency.value);
+
   // Create habit record
   const newHabit = {
     id: crypto.randomUUID(),
     name: habitInput.value,
     completed: false,
+    frequency: selectedFrequency,
     createdAt: new Date().toISOString(),
 
     // Future enhancements for habit tracking could include additional properties such as:
-    // frequency: "daily", // or "weekly", "monthly"
     // completedToday: false, // to track if the habit was completed today
     // streak: 0, // to track the number of consecutive days the habit has been completed
   };
@@ -45,7 +79,14 @@ addHabitButton.addEventListener("click", () => {
     <div class="w-full max-w-sm shadow-xl rounded-lg p-6 bg-white mt-6 ml-6">
     <div class="mb-2">
    <span id="habitId-${newHabit.id}" class="edu-font">${newHabit.name}</span>
+    <span id="habitFrequency-${newHabit.id}"
+        class="text-xs font-semibold px-3 py-1 rounded-full bg-gray-200 text-gray-700"
+    >
+        ${newHabit.frequency.value}
+    </span>
    </div>
+
+
         <button id="complete-${newHabit.id}" class="complete-habit-button bg-green-400 text-white py-2 px-4 rounded hover:bg-green-500 transition duration-200" onclick="onCompleteClick('${newHabit.id}')">${checkIcon}</button>
       
       
@@ -57,26 +98,28 @@ addHabitButton.addEventListener("click", () => {
   // Append new habit to the habit container
   habitContainer.insertAdjacentHTML("beforeend", newHabitHTML);
 
-  //   console.log(habitContainer);
-
   // Add habit data to localStorage
   localStorage.setItem("habits", JSON.stringify(habitData));
-  // Clear input field
+
   habitInput.value = "";
+  document.querySelector('input[name="frequency"][value="once"]').checked =
+    true;
 });
 
 // Rebuild the UI from the current application state.
 const handleListBuild = () => {
+
   habitContainer.innerHTML = "";
   completedContainer.innerHTML = "";
 
   const reversedHabits = [...habitData].reverse();
 
   reversedHabits.forEach((habit) => {
-    let completedClass = "";
+      let completedClass = "";
+     const habitHTML = buildHabitCard(habit);
 
-    if (habit.completed) {
-      completedClass = "text-gray-400";
+    if (habit.completed === true) {
+      completedClass = "text-gray-400 line-through";
       const completedHabitHTML = `
       
              <div class="box" id="${habit.id}">
@@ -84,23 +127,18 @@ const handleListBuild = () => {
         <div class="w-full max-w-sm shadow-xl rounded-lg p-6 bg-white mt-6 ml-6">
         
         <div class="mb-2">
+        <span class="">🌷</span>
        <span id="habitId-${habit.id}" class="edu-font ${completedClass}">${habit.name}</span>
+      
        </div>
         `;
 
       completedContainer.insertAdjacentHTML("beforeend", completedHabitHTML);
-    } else {
-      const listHabits = `
-        <div class="box" id="${habit.id}">
-        <div class="w-full max-w-sm shadow-xl rounded-lg p-6 bg-white mt-6 ml-6">
-        <div class="mb-2">
-       <span id="habitId-${habit.id}" class="edu-font ${completedClass}">${habit.name}</span>
-       </div>
-            <button id="complete-${habit.id}" class="complete-habit-button bg-green-400 text-white py-2 px-4 rounded hover:bg-green-500 transition duration-200" onclick="onCompleteClick('${habit.id}')">${checkIcon}</button>
-            
-            <button id="delete-${habit.id}" class="delete-habit-button bg-green-400 text-white py-2 px-4 rounded hover:bg-green-500 transition duration-200" onclick="onDeleteClick('${habit.id}')">${trashIcon}</button>`;
+    }
 
-      habitContainer.insertAdjacentHTML("beforeend", listHabits);
+    else {
+
+      habitContainer.insertAdjacentHTML("beforeend", habitHTML);
     }
   });
 };
@@ -113,7 +151,7 @@ const bloomFlower = () => {
   document.getElementById("garden").appendChild(flower);
   setTimeout(() => {
     flower.remove();
-  }, 4000); 
+  }, 4000);
 };
 
 let doneHabit = "";
@@ -139,7 +177,9 @@ const onCompleteClick = (habitId) => {
 const onDeleteClick = (habitId) => {
   console.log(`Delete button clicked for habit ID: ${habitId}`);
 
-  const habitToRemoveIndex = habitData.findIndex((habit) => habit.id === habitId);
+  const habitToRemoveIndex = habitData.findIndex(
+    (habit) => habit.id === habitId,
+  );
   habitData.splice(habitToRemoveIndex, 1);
   localStorage.setItem("habits", JSON.stringify(habitData));
   habitContainer.innerHTML = "";
@@ -156,8 +196,7 @@ const showToast = (message) => {
   toast.classList.add("opacity-100");
 
   setTimeout(() => {
-        toast.classList.remove("opacity-100");
-        toast.classList.add("opacity-0");
-    }, 2500);
-}
-
+    toast.classList.remove("opacity-100");
+    toast.classList.add("opacity-0");
+  }, 2500);
+};
