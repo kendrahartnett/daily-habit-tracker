@@ -12,6 +12,9 @@ const habitInput = document.getElementById("habit-input");
 const habitContainer = document.getElementById("habit-container");
 const completedContainer = document.getElementById("completed-container");
 const garden = document.getElementById("garden");
+const selectedFrequency = document.querySelector(
+    'input[name="frequency"]:checked'
+).value;
 
 // Habit Icons
 const checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -30,10 +33,10 @@ addHabitButton.addEventListener("click", () => {
     id: crypto.randomUUID(),
     name: habitInput.value,
     completed: false,
+    frequency: selectedFrequency.toLowerCase(), 
     createdAt: new Date().toISOString(),
 
     // Future enhancements for habit tracking could include additional properties such as:
-    // frequency: "daily", // or "weekly", "monthly"
     // completedToday: false, // to track if the habit was completed today
     // streak: 0, // to track the number of consecutive days the habit has been completed
   };
@@ -46,6 +49,10 @@ addHabitButton.addEventListener("click", () => {
     <div class="mb-2">
    <span id="habitId-${newHabit.id}" class="edu-font">${newHabit.name}</span>
    </div>
+
+   <p class="text-sm text-gray-500">
+    Frequency: ${newHabit.frequency}
+</p>
         <button id="complete-${newHabit.id}" class="complete-habit-button bg-green-400 text-white py-2 px-4 rounded hover:bg-green-500 transition duration-200" onclick="onCompleteClick('${newHabit.id}')">${checkIcon}</button>
       
       
