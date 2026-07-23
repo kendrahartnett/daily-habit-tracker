@@ -33,11 +33,11 @@
       Track your daily habits and stay on top of your goals!
     </p>
 
-    <!-- Add Habit form section -->
+    
 
     <div class="flex flex-wrap items-center mt-2">
    
-
+        <!-- Motivational Quotes Section -->
           <div
         class="w-full max-w-sm shadow-xl  p-6 mt-6 mb-6 ml-6"
       >
@@ -47,6 +47,7 @@
     
       </div>
 
+        <!-- Add Habit Form-->
           <div
         class="w-full max-w-sm shadow-2xl rounded-lg p-6 bg-white mt-6 mb-6 ml-6"
       >
@@ -68,34 +69,36 @@
         </form>
       </div>
 
-   
-
-
-
+      <!-- Garden Animation -->
       <div id="garden" class="garden">
-
-
  
     </div>
     </div>
 
-    <!-- Read/View Habits section -->
 
+         <!-- Active Habits Section -->
     <div class="box" id="habit-container">
-    
-
-      <!-- Habit items will be dynamically added here -->
+         <!-- JavaScript renders active habit cards here -->
     </div>
 
-    <!-- Completed habits will be displayed here. -->
 
+        <!-- Completed Habits Section -->
     <section id="completed-habits" >
    
     <div class="box" id="completed-container">
-
-         <h2 class="mt-10 ml-6">Completed Habits</h2>
+        <h2 class="mt-10 ml-6">Completed Habits</h2>
+        <div class="completed-habits-list"></div>
+          <!-- JavaScript renders completed habit cards here -->
+        </div>
     </div>
 </section>
+
+
+    <!-- Delete Toast Notification -->
+<div
+    id="toast"
+    class="fixed bottom-6 right-6 bg-gray-800 text-white px-5 py-3 rounded-lg shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none">
+</div>
 
     <script type="text/javascript" src="index.js"></script>
   </body>

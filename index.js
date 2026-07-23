@@ -1,12 +1,8 @@
-// On page load get habits from local storage and display them
-
-console.log("habittrackersetup");
-
+// Load saved habits from localStorage when the app starts.
 let habitData = JSON.parse(localStorage.getItem("habits")) || [];
 console.log(habitData);
 
 window.addEventListener("load", () => {
-//   console.log("window load event fired");
   handleListBuild();
 });
 
@@ -17,8 +13,7 @@ const habitContainer = document.getElementById("habit-container");
 const completedContainer = document.getElementById("completed-container");
 const garden = document.getElementById("garden");
 
-// Icons
-
+// Habit Icons
 const checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
 </svg>`;
@@ -28,7 +23,6 @@ const trashIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill=
 </svg>`;
 
 //Add habit button click event listener
-
 addHabitButton.addEventListener("click", () => {
   console.log("Add Habit button clicked");
   // Create habit record
@@ -63,40 +57,40 @@ addHabitButton.addEventListener("click", () => {
   // Append new habit to the habit container
   habitContainer.insertAdjacentHTML("beforeend", newHabitHTML);
 
-//   console.log(habitContainer);
+  //   console.log(habitContainer);
 
   // Add habit data to localStorage
   localStorage.setItem("habits", JSON.stringify(habitData));
   // Clear input field
   habitInput.value = "";
-  
 });
 
-// Funtion to repopulate habit list on page load
+// Rebuild the UI from the current application state.
 const handleListBuild = () => {
-  console.log("handleListBuild called");
-
   habitContainer.innerHTML = "";
   completedContainer.innerHTML = "";
 
-  habitData.forEach((habit) => {
+  const reversedHabits = [...habitData].reverse();
+
+  reversedHabits.forEach((habit) => {
     let completedClass = "";
 
     if (habit.completed) {
       completedClass = "text-gray-400";
-         const completedHabitHTML = `
+      const completedHabitHTML = `
+      
              <div class="box" id="${habit.id}">
+             
         <div class="w-full max-w-sm shadow-xl rounded-lg p-6 bg-white mt-6 ml-6">
+        
         <div class="mb-2">
        <span id="habitId-${habit.id}" class="edu-font ${completedClass}">${habit.name}</span>
        </div>
         `;
 
-        completedContainer.insertAdjacentHTML("beforeend", completedHabitHTML);
-      
+      completedContainer.insertAdjacentHTML("beforeend", completedHabitHTML);
     } else {
-
-    const listHabits = `
+      const listHabits = `
         <div class="box" id="${habit.id}">
         <div class="w-full max-w-sm shadow-xl rounded-lg p-6 bg-white mt-6 ml-6">
         <div class="mb-2">
@@ -106,7 +100,8 @@ const handleListBuild = () => {
             
             <button id="delete-${habit.id}" class="delete-habit-button bg-green-400 text-white py-2 px-4 rounded hover:bg-green-500 transition duration-200" onclick="onDeleteClick('${habit.id}')">${trashIcon}</button>`;
 
-    habitContainer.insertAdjacentHTML("beforeend", listHabits);}
+      habitContainer.insertAdjacentHTML("beforeend", listHabits);
+    }
   });
 };
 handleListBuild();
@@ -116,14 +111,12 @@ const bloomFlower = () => {
   const flower = document.createElement("div");
   flower.classList.add("flower-bloom");
   document.getElementById("garden").appendChild(flower);
-   setTimeout(() => {
-        flower.remove();
-    }, 3000); // remove after 3 seconds
+  setTimeout(() => {
+    flower.remove();
+  }, 4000); 
 };
 
 let doneHabit = "";
-
-
 
 // Habit completion handler
 const onCompleteClick = (habitId) => {
@@ -132,15 +125,39 @@ const onCompleteClick = (habitId) => {
 
   const habit = habitData[habitIndex];
 
-if (!habit.completed) {
+  if (!habit.completed) {
     habit.completed = true;
     bloomFlower();
-     doneHabit = habitData[habitIndex];
+    doneHabit = habitData[habitIndex];
     localStorage.setItem("habits", JSON.stringify(habitData));
     habitContainer.innerHTML = "";
     handleListBuild();
-}
-
-
+  }
 };
+
+// Habit deletion handler
+const onDeleteClick = (habitId) => {
+  console.log(`Delete button clicked for habit ID: ${habitId}`);
+
+  const habitToRemoveIndex = habitData.findIndex((habit) => habit.id === habitId);
+  habitData.splice(habitToRemoveIndex, 1);
+  localStorage.setItem("habits", JSON.stringify(habitData));
+  habitContainer.innerHTML = "";
+  handleListBuild();
+  showToast("Habit deleted successfully!");
+};
+
+// Function to show toast notification
+const showToast = (message) => {
+  const toast = document.getElementById("toast");
+
+  toast.textContent = message;
+  toast.classList.remove("opacity-0");
+  toast.classList.add("opacity-100");
+
+  setTimeout(() => {
+        toast.classList.remove("opacity-100");
+        toast.classList.add("opacity-0");
+    }, 2500);
+}
 
