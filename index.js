@@ -14,7 +14,8 @@ const completedContainer = document.getElementById("completed-container");
 const garden = document.getElementById("garden");
 const selectedFrequency = document.querySelector(
     'input[name="frequency"]:checked'
-).value;
+);
+
 
 // Habit Icons
 const checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -27,13 +28,21 @@ const trashIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill=
 
 //Add habit button click event listener
 addHabitButton.addEventListener("click", () => {
-  console.log("Add Habit button clicked");
+//   console.log("Add Habit button clicked");
+const selectedFrequency = document.querySelector(
+    'input[name="frequency"]:checked'
+);
+
+
+console.log("selectedFrequency:", selectedFrequency);
+console.log("selectedFrequency.value:", selectedFrequency.value);
+
   // Create habit record
   const newHabit = {
     id: crypto.randomUUID(),
     name: habitInput.value,
     completed: false,
-    frequency: selectedFrequency.toLowerCase(), 
+    frequency: selectedFrequency, 
     createdAt: new Date().toISOString(),
 
     // Future enhancements for habit tracking could include additional properties such as:
