@@ -1,47 +1,93 @@
-/* body {
-    background-color: rgb(237, 207, 240);
-} */
+body {
+    font-family: manrope, sans-serif;
+}
 
 .box {
   display: flex;
   flex-wrap: wrap;
+  background: #000;
+
 }
 
-.edu-font {
-  font-family: "Edu VIC WA NT Hand", cursive;
+.item {
+    width: 30%;
+    margin: 10px;
+    margin-left: 20px;
+    align-items: center;
+    background: #dc4a4a;
+   
+}
+
+.next-item {
+    width: 60%;
+    margin: 10px;
+    margin-left: 30px;
+    align-items: center;
+    background: #d7e83f;
+   
+}
+
+
+/* FONTS */
+.manrope {
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.fraunces {
+  font-family: "Fraunces", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "SOFT" 0,
+    "WONK" 0;
+}
+
+.fleur-de-leah-regular {
+  font-family: "Fleur De Leah", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
+.cormorant-garamond {
+  font-family: "Cormorant Garamond", serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
 
 .garden {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    min-height: 120px;
-    margin-top: 2rem;
-    padding: 1rem;
-   
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-height: 120px;
+  margin-top: 2rem;
+  padding: 1rem;
 }
 
 .flower {
-    width: 60px;
-    height: 60px;
-    transform-origin: bottom center;
-    animation: bloom 1.2s ease forwards;
-    /* background-color: rgb(134, 231, 127); */
+  width: 60px;
+  height: 60px;
+  transform-origin: bottom center;
+  animation: bloom 1.2s ease forwards;
+  /* background-color: rgb(134, 231, 127); */
 }
 
 @keyframes bloom {
-    0% {
-        transform: scale(0) rotate(-20deg);
-        opacity: 0;
-    }
-    60% {
-        transform: scale(1.15) rotate(5deg);
-    }
-    100% {
-        transform: scale(1) rotate(0deg);
-        opacity: 1;
-    }
+  0% {
+    transform: scale(0) rotate(-20deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15) rotate(5deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
 }
