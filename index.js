@@ -17,13 +17,10 @@ const selectedFrequency = document.querySelector(
 );
 
 const buildHabitCard = (habit) => {
-  let completedClass = "";
-
   if (habit.completed) {
     completedClass = "text-gray-400 manrope text-xs line-through";
   }
   return `
-
    <div class="box" id="${habit.id}">
     <div class="card-client">
           <p id="habitId-${habit.id}" class="name-client manrope">${habit.name}</p>
@@ -33,21 +30,15 @@ const buildHabitCard = (habit) => {
           </div>
         </div>
         </div>
-
     `;
 };
 
 // Habit Icons
 const checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6C92.9 394.1 92.9 373.8 105.4 361.3C117.9 348.8 138.2 348.8 150.7 361.3L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z"/></svg>`;
-
 const trashIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M262.2 48C248.9 48 236.9 56.3 232.2 68.8L216 112L120 112C106.7 112 96 122.7 96 136C96 149.3 106.7 160 120 160L520 160C533.3 160 544 149.3 544 136C544 122.7 533.3 112 520 112L424 112L407.8 68.8C403.1 56.3 391.2 48 377.8 48L262.2 48zM128 208L128 512C128 547.3 156.7 576 192 576L448 576C483.3 576 512 547.3 512 512L512 208L464 208L464 512C464 520.8 456.8 528 448 528L192 528C183.2 528 176 520.8 176 512L176 208L128 208zM288 280C288 266.7 277.3 256 264 256C250.7 256 240 266.7 240 280L240 456C240 469.3 250.7 480 264 480C277.3 480 288 469.3 288 456L288 280zM400 280C400 266.7 389.3 256 376 256C362.7 256 352 266.7 352 280L352 456C352 469.3 362.7 480 376 480C389.3 480 400 469.3 400 456L400 280z"/></svg>`;
-
-const starIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674"></path> />`;
 
 //Add habit button click event listener
 addHabitButton.addEventListener("click", () => {
-  //   console.log("Add Habit button clicked");
   const selectedFrequency = document.querySelector(
     'input[name="frequency"]:checked',
   );
@@ -75,8 +66,7 @@ addHabitButton.addEventListener("click", () => {
             <button id="delete-${newHabit.id}" onclick="onDeleteClick('${newHabit.id}')">${trashIcon}</button>
           </div>
         </div>
-        </div>`
-        ;
+        </div>`;
   // Append new habit to the habit container
   habitContainer.insertAdjacentHTML("beforeend", newHabitHTML);
 
@@ -99,17 +89,15 @@ const handleListBuild = () => {
 
     if (habit.completed === true) {
       completedClass = "text-gray-400 line-through";
-      const completedHabitHTML = `
-      
+      const completedHabitHTML = `      
              <div class="box ml-4" id="${habit.id}">
-             
-        <div class="w-full max-w-sm shadow-lg rounded p-2 bg-white mt-4 ml-2">
-        
-        <div class="mb-2">
-        <span class="">🌱</span>
-       <span id="habitId-${habit.id}" class="edu-font ${completedClass}">${habit.name}</span>
-      
-       </div>
+                 <div class="w-full max-w-sm shadow-lg rounded p-2 bg-white mt-4 ml-2">
+                <div class="mb-2">
+                 <span class="">🌱</span>
+                 <span id="habitId-${habit.id}" class="edu-font ${completedClass}">${habit.name}</span>
+             </div>
+             </div>
+             </div>
         `;
 
       completedContainer.insertAdjacentHTML("beforeend", completedHabitHTML);
@@ -125,9 +113,6 @@ const bloomFlower = () => {
   const flower = document.createElement("div");
   flower.classList.add("flower-bloom");
   document.getElementById("garden").appendChild(flower);
-//   setTimeout(() => {
-//     flower.remove();
-//   }, 4000);
 };
 
 let doneHabit = "";

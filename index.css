@@ -1,19 +1,19 @@
 :root {
-  --primary-green: #4ADE80;
+  --primary-green: #4ade80;
   --primary-green-hover: #37cb6d;
 
   --habit-card: #2cb587;
-   --habit-button: #29b385;
-  --habit-card-border: #6EE7D8;
+  --habit-button: #29b385;
+  --habit-card-border: #6ee7d8;
 
-  --background: #F8FAFC;
-  --text-dark: #1F2937;
-  --text-light: #FFFFFF;
+  --background: #f8fafc;
+  --text-dark: #1f2937;
+  --text-light: #ffffff;
 }
 
 body {
-    font-family: manrope, sans-serif;
-    background-color: var(--background);
+  font-family: manrope, sans-serif;
+  background-color: var(--background);
 }
 
 .navbar {
@@ -32,44 +32,42 @@ body {
 }
 
 .item {
-    width: 30%;
-    height: 140px;
-    margin: 10px;
-    margin-left: 20px;
-    align-items: center;
-    }
+  width: 30%;
+  height: 140px;
+  margin: 10px;
+  margin-left: 20px;
+  align-items: center;
+}
 
 .quote-item {
-    width: 28%;
-    height: 140px;
-    margin-top: 5px;
-    margin-left: 2px;
-    align-items: center;
-  }
+  width: 28%;
+  height: 140px;
+  margin-top: 5px;
+  margin-left: 2px;
+  align-items: center;
+}
 
 .next-item {
-    width: 60%;
-    height: 140px;
-    margin: 10px;
-    margin-left: 30px;
-    align-items: center;
-      
+  width: 60%;
+  height: 140px;
+  margin: 10px;
+  margin-left: 30px;
+  align-items: center;
 }
 
 .habit-card-item {
-    width: 65%;
-    margin: 10px;
-    margin-left: 13px;
-    align-items: center;
-   }
-
-.item-card {
-    width: 10%;
-    margin: 5px;
-    margin-left: 2px;
-    align-items: center;
+  width: 65%;
+  margin: 10px;
+  margin-left: 13px;
+  align-items: center;
 }
 
+.item-card {
+  width: 10%;
+  margin: 5px;
+  margin-left: 2px;
+  align-items: center;
+}
 
 /* FONTS */
 .manrope {
@@ -95,16 +93,12 @@ body {
   font-style: normal;
 }
 
-
-
 .cormorant-garamond {
   font-family: "Cormorant Garamond", serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
-
-
 
 .garden {
   display: flex;
@@ -119,7 +113,6 @@ body {
   height: 60px;
   transform-origin: bottom center;
   animation: bloom 1.2s ease forwards;
-  /* background-color: rgb(134, 231, 127); */
 }
 
 @keyframes bloom {
@@ -137,7 +130,7 @@ body {
 }
 
 /* Delete All Button */
-/* From Uiverse.io by boryanakrasteva */ 
+/* From Uiverse.io by boryanakrasteva */
 .btn {
   cursor: pointer;
   width: 50px;
@@ -145,11 +138,11 @@ body {
   border: none;
   position: relative;
   border-radius: 10px;
-  -webkit-box-shadow: 1px 1px 5px .2px #00000035;
-  box-shadow: 1px 1px 5px .2px #00000035;
-  -webkit-transition: .2s linear;
-  transition: .2s linear;
-  transition-delay: .2s;
+  -webkit-box-shadow: 1px 1px 5px 0.2px #00000035;
+  box-shadow: 1px 1px 5px 0.2px #00000035;
+  -webkit-transition: 0.2s linear;
+  transition: 0.2s linear;
+  transition-delay: 0.2s;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -163,14 +156,14 @@ body {
 
 .btn:hover {
   width: 150px;
-  transition-delay: .2s;
+  transition-delay: 0.2s;
 }
 
 .btn:hover > .paragraph {
   visibility: visible;
   opacity: 1;
-  -webkit-transition-delay: .4s;
-  transition-delay: .4s;
+  -webkit-transition-delay: 0.4s;
+  transition-delay: 0.4s;
 }
 
 .btn:hover > .icon-wrapper .icon {
@@ -188,8 +181,8 @@ body {
   font-size: 18px;
   margin-right: 20px;
   padding-left: 20px;
-  -webkit-transition: .2s linear;
-  transition: .2s linear;
+  -webkit-transition: 0.2s linear;
+  transition: 0.2s linear;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -206,19 +199,19 @@ body {
 }
 
 .icon {
-  transform: scale(.9);
-  transition: .2s linear;
+  transform: scale(0.9);
+  transition: 0.2s linear;
 }
 
 .icon path {
   stroke: #000;
   stroke-width: 2px;
-  -webkit-transition: .2s linear;
-  transition: .2s linear;
+  -webkit-transition: 0.2s linear;
+  transition: 0.2s linear;
 }
 
 /* CARD */
-/* From Uiverse.io by abrahamcalsin */ 
+/* From Uiverse.io by abrahamcalsin */
 .card-client {
   background: #2cb587;
   margin: 8px;
@@ -239,7 +232,6 @@ body {
 .card-client:hover {
   transform: translateY(-10px);
 }
-
 
 .name-client {
   margin: 0;
@@ -273,7 +265,7 @@ body {
 }
 
 .social-media button:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .social-media button:last-child {
@@ -285,7 +277,7 @@ body {
   fill: currentColor;
 }
 
-/*-- Tooltip Social Media --*/
+/*-- Tooltip --*/
 .tooltip-social {
   background: #262626;
   display: block;
