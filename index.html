@@ -25,37 +25,37 @@
     <title>Bloom Daily Habit Tracker</title>
   </head>
 
-  <body class="bg-slate-100 min-h-screen">
-    <header class="bg-green-400 shadow-lg px-2 py-1">
+  <body class="min-h-screen">
+    <header class="navbar shadow-lg px-2 py-1">
       <div class="flex justify-between items-center">
         <h1>
-          <span class="text-5xl fleur-de-leah-regular text-white"> Bloom </span>
+          <span class="text-3xl fleur-de-leah-regular text-white"> Bloom </span>
         </h1>
 
-        <p class="text-lg text-white/80 italic">Grow one habit at a time.</p>
+        <p class="text-sm text-white/80 italic">Small habits. Big growth.</p>
       </div>
     </header>
 
     <p class="ml-3 text-xs manrope">
       Stay focused, motivated, and in control of your life with
       <span class="fleur-de-leah-regular text-green-500 text-2xl">Bloom</span>,
-      your personal habit tracker. Track your daily habits and stay on top of
-      your goals!
+      your personal habit tracker. Build healthy routines, track your daily
+      habits, and bloom one day at a time.
     </p>
 
     <div class="box">
       <!-- Add Habit Form-->
       <div class="item max-w-sm shadow-2xl rounded-lg bg-white p-2">
-        <h2 class="text-md font-semibold mb-4">Add a New Habit</h2>
+        <h2 class="text-sm font-semibold mb-4">Add a New Habit</h2>
         <form id="habit-form" class="flex flex-col gap-4">
           <input
             type="text"
             id="habit-input"
             placeholder="Enter habit here..."
-            class="border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+            class="border border-gray-300 rounded p-1 focus:outline-none focus:ring-2 focus:ring-green-400"
           />
 
-          <div class="flex gap-4">
+          <!-- <div class="flex gap-4 text-xs">
             <label>
               <input type="radio" name="frequency" value="once" checked />
               Once
@@ -70,32 +70,42 @@
               <input type="radio" name="frequency" value="weekly" />
               Weekly
             </label>
-          </div>
+          </div> -->
 
           <button
             type="button"
             id="add-habit-button"
-            class="btn btn-primary bg-green-400 text-white py-2 px-4 rounded hover:bg-green-500 transition duration-200"
+            class="butn-hover text-white py-2 px-2 text-sm rounded hover:bg-emerald-400 transition duration-200"
           >
             Add Habit
           </button>
         </form>
       </div>
 
-      <!-- Garden Animation -->
-      <div id="garden" class="garden next-item"></div>
+      <div class="next-item">
+        <!-- Progress Bar -->
+        <h3 class="text-white">Progress Bar Holder</h3>
+
+        <!-- Garden Animation -->
+
+        <div id="garden" class="garden"></div>
+      </div>
     </div>
 
     <!-- Active Habits Section -->
     <div class="box">
-      <div class="next-item" id="habit-container">
-        <!-- JavaScript renders active habit cards here -->
+      <div class="habit-card-item">
+    
+
+        <div class="box" id="habit-container">
+          <!-- JavaScript renders active habit cards here -->
+        </div>
       </div>
 
       <!-- Motivational Quotes Section -->
-      <div class="item">
+      <div class="quote-item">
         <h3 class="mb-2">🌱 Daily Inspiration</h3>
-        <h3 class="italic text-sm">
+        <h3 class="italic text-xs">
           “Keep your thoughts positive because your thoughts become your
           words... [and] keep your habits positive because your habits become
           your values”. <span class="font-bold"> - Mahatma Gandhi</span>
@@ -108,7 +118,7 @@
       <div class="box" id="completed-container">
         <h2 class="mt-10 ml-6">Completed Habits</h2>
         <div class="completed-habits-list"></div>
-        <!-- JavaScript renders completed habit cards here -->
+     
       </div>
     </section>
 
