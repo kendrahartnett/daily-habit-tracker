@@ -20,7 +20,7 @@ const buildHabitCard = (habit) => {
   let completedClass = "";
 
   if (habit.completed) {
-    completedClass = "text-gray-400 line-through";
+    completedClass = "text-gray-400 manrope text-xs line-through";
   }
   return `
 
@@ -101,12 +101,12 @@ const handleListBuild = () => {
       completedClass = "text-gray-400 line-through";
       const completedHabitHTML = `
       
-             <div class="box" id="${habit.id}">
+             <div class="box ml-4" id="${habit.id}">
              
-        <div class="w-full max-w-sm shadow-xl rounded-lg p-6 bg-white mt-6 ml-6">
+        <div class="w-full max-w-sm shadow-lg rounded p-2 bg-white mt-4 ml-2">
         
         <div class="mb-2">
-        <span class="">🌷</span>
+        <span class="">🌱</span>
        <span id="habitId-${habit.id}" class="edu-font ${completedClass}">${habit.name}</span>
       
        </div>

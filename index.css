@@ -13,7 +13,7 @@
 
 body {
     font-family: manrope, sans-serif;
-    background-color: #F8FAFC;
+    background-color: var(--background);
 }
 
 .navbar {
@@ -29,8 +29,6 @@ body {
 .box {
   display: flex;
   flex-wrap: wrap;
-  background: #000;
-
 }
 
 .item {
@@ -39,9 +37,7 @@ body {
     margin: 10px;
     margin-left: 20px;
     align-items: center;
-    background: #dc4a4a;
-   
-}
+    }
 
 .quote-item {
     width: 28%;
@@ -49,19 +45,15 @@ body {
     margin-top: 5px;
     margin-left: 2px;
     align-items: center;
-    background: #bcaaaa;
-   
-}
+  }
 
 .next-item {
     width: 60%;
     height: 140px;
-
     margin: 10px;
     margin-left: 30px;
     align-items: center;
-    background: #d7e83f;
-   
+      
 }
 
 .habit-card-item {
@@ -69,16 +61,13 @@ body {
     margin: 10px;
     margin-left: 13px;
     align-items: center;
-    background: #3f48e8;
-   
-}
+   }
 
 .item-card {
     width: 10%;
     margin: 5px;
     margin-left: 2px;
     align-items: center;
-    background: #ba4adc;
 }
 
 
@@ -115,12 +104,13 @@ body {
   font-style: normal;
 }
 
+
+
 .garden {
   display: flex;
   gap: 12px;
   align-items: center;
-  min-height: 120px;
-  margin-top: 2rem;
+  min-height: 100px;
   padding: 1rem;
 }
 
@@ -146,6 +136,86 @@ body {
   }
 }
 
+/* Delete All Button */
+/* From Uiverse.io by boryanakrasteva */ 
+.btn {
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border: none;
+  position: relative;
+  border-radius: 10px;
+  -webkit-box-shadow: 1px 1px 5px .2px #00000035;
+  box-shadow: 1px 1px 5px .2px #00000035;
+  -webkit-transition: .2s linear;
+  transition: .2s linear;
+  transition-delay: .2s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: space-between;
+}
+
+.btn:hover {
+  width: 150px;
+  transition-delay: .2s;
+}
+
+.btn:hover > .paragraph {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition-delay: .4s;
+  transition-delay: .4s;
+}
+
+.btn:hover > .icon-wrapper .icon {
+  transform: scale(1.1);
+}
+
+.bnt:hover > .icon-wrapper .icon path {
+  stroke: black;
+}
+
+.paragraph {
+  color: black;
+  visibility: hidden;
+  opacity: 0;
+  font-size: 18px;
+  margin-right: 20px;
+  padding-left: 20px;
+  -webkit-transition: .2s linear;
+  transition: .2s linear;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.icon-wrapper {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  transform: scale(.9);
+  transition: .2s linear;
+}
+
+.icon path {
+  stroke: #000;
+  stroke-width: 2px;
+  -webkit-transition: .2s linear;
+  transition: .2s linear;
+}
 
 /* CARD */
 /* From Uiverse.io by abrahamcalsin */ 
@@ -153,7 +223,7 @@ body {
   background: #2cb587;
   margin: 8px;
   width: 12rem;
-  padding-top: 5px;
+  padding-top: px;
   padding-bottom: 5px;
   padding-left: 20px;
   padding-right: 20px;
@@ -170,27 +240,12 @@ body {
   transform: translateY(-10px);
 }
 
-.user-picture {
-  overflow: hidden;
-  object-fit: cover;
-  width: 5rem;
-  height: 5rem;
-  border: 4px solid #7cdacc;
-  border-radius: 999px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-}
-
-.user-picture svg {
-  width: 2.5rem;
-  fill: currentColor;
-}
 
 .name-client {
   margin: 0;
-  margin-top: 20px;
+  margin-top: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   font-weight: 600;
   font-size: 18px;
 }
@@ -206,7 +261,7 @@ body {
   display: block;
   width: 100%;
   height: 2px;
-  margin: 20px 0;
+  margin: 8px 0;
   background: #7cdacc;
 }
 
@@ -215,6 +270,10 @@ body {
   margin-right: 15px;
   text-decoration: none;
   color: inherit;
+}
+
+.social-media button:hover {
+    transform: scale(1.1);
 }
 
 .social-media button:last-child {
