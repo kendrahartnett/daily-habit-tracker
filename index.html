@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="bumblebee">
+<html lang="en" data-theme="garden">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="animations.css" />
 
     <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css"
       rel="stylesheet"
       type="text/css"
     />
@@ -15,127 +15,142 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Hand:wght@400..700&display=swap" rel="stylesheet">
-
-    <title>Daily Habit Tracker</title>
+    <!-- Google Font APIs Section-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Fleur+De+Leah&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Bloom Daily Habit Tracker</title>
   </head>
 
-  <body class="bg-slate-100 min-h-screen">
-    <header class="bg-green-400 text-white p-6 shadow-md">
-      <h1 class="text-2xl font-bold"><span class="italic font-bold text-brown-500 edu-font text-3xl">Bloom</span> - Daily Habit Tracker</h1>
-      <p class="text-lg">Small habits. Big growth.</p>
+  <body class="min-h-screen">
+    <header class="navbar shadow-lg px-2 py-1">
+      <div class="flex justify-between items-center">
+        <h1>
+          <span class="text-3xl fleur-de-leah-regular text-white"> Bloom </span>
+        </h1>
+
+        <p class="text-sm text-white/80 italic">Small habits. Big growth.</p>
+      </div>
     </header>
 
-    <p class="ml-6 mt-2 text-sm">
-        Stay focused, motivated, and in control of your life with <span class="edu-font font-bold text-lime-500 text-lg">Bloom</span>, your personal habit tracker.
-      Track your daily habits and stay on top of your goals!
+    <p class="ml-3 mt-1 text-xs manrope">
+      Stay focused, motivated, and in control of your life with
+      <span class="fleur-de-leah-regular text-green-500 text-2xl">Bloom</span>,
+      your personal habit tracker. Build healthy routines, track your daily
+      habits, and bloom one day at a time.
     </p>
 
-    
-
-    <div class="flex flex-wrap items-center mt-2">
-   
-        <!-- Motivational Quotes Section -->
-          <div
-        class="w-full max-w-sm shadow-xl  p-6 mt-6 mb-6 ml-6"
-      >
-
-      <h3 class="italic">“Keep your thoughts positive because your thoughts become your words... [and] keep your habits positive because your habits become your values”.
-        <span class="edu-font font-bold"> - Mahatma Gandhi</span></h3>
-    
-      </div>
-
-        <!-- Add Habit Form-->
-          <div
-        class="w-full max-w-sm shadow-2xl rounded-lg p-6 bg-white mt-6 mb-6 ml-6"
-      >
-        <h2 class="text-md font-semibold mb-4">Add a New Habit</h2>
+    <div class="box">
+      <!-- Add Habit Form-->
+      <div class="item max-w-sm shadow-2xl rounded-lg bg-white p-2">
+        <h2 class="text-sm font-semibold mb-4">Add a New Habit</h2>
         <form id="habit-form" class="flex flex-col gap-4">
           <input
             type="text"
             id="habit-input"
             placeholder="Enter habit here..."
-            class="border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+            class="border border-gray-300 rounded p-1 focus:outline-none focus:ring-2 focus:ring-green-400"
           />
 
+          <!-- <div class="flex gap-4 text-xs">
+            <label>
+              <input type="radio" name="frequency" value="once" checked />
+              Once
+            </label>
 
- <div class="flex gap-4 mt-2">
+            <label>
+              <input type="radio" name="frequency" value="daily" />
+              Daily
+            </label>
 
-    <label>
-        <input
-            type="radio"
-            name="frequency"
-            value="once"
-            checked
-        />
-        Once
-    </label>
-
-    <label>
-        <input
-            type="radio"
-            name="frequency"
-            value="daily"
-        />
-        Daily
-    </label>
-
-    <label>
-        <input
-            type="radio"
-            name="frequency"
-            value="weekly"
-        />
-        Weekly
-    </label>
-
-</div>
-
-
+            <label>
+              <input type="radio" name="frequency" value="weekly" />
+              Weekly
+            </label>
+          </div> -->
 
           <button
             type="button"
             id="add-habit-button"
-            class="bg-green-400 text-white py-2 px-4 rounded hover:bg-green-500 transition duration-200"
+            class="butn-hover text-white py-2 px-2 text-sm rounded hover:bg-emerald-400 transition duration-200"
           >
             Add Habit
           </button>
         </form>
       </div>
 
-      <!-- Garden Animation -->
-      <div id="garden" class="garden">
- 
+      <div class="next-item">
+        <!-- Progress Bar -->
+        <h3 class="text-emerald-600 mt-3">
+          Watch your daily progress garden grow...
+        </h3>
+
+        <!-- Garden Animation -->
+
+        <div id="garden" class="garden"></div>
+        <!-- <h3 class="text-xs -mt-8 flex flex-end">3 of 5 habits completed today</h3> -->
+      </div>
     </div>
-    </div>
 
-
-         <!-- Active Habits Section -->
-    <div class="box" id="habit-container">
-         <!-- JavaScript renders active habit cards here -->
-    </div>
-
-
-
-        <!-- Completed Habits Section -->
-    <section id="completed-habits" >
-   
-    <div class="box" id="completed-container">
-        <h2 class="mt-10 ml-6">Completed Habits</h2>
-        <div class="completed-habits-list"></div>
-          <!-- JavaScript renders completed habit cards here -->
+    <!-- Active Habits Section -->
+    <div class="box">
+      <div class="habit-card-item">
+        <div class="box" id="habit-container">
+          <!-- JavaScript renders active habit cards here -->
         </div>
-    </div>
-</section>
+      </div>
 
+      <!-- Motivational Quotes Section -->
+      <div class="quote-item">
+        <h3 class="mb-2">🌱 Daily Inspiration</h3>
+        <h3 class="italic text-xs">
+          “Keep your thoughts positive because your thoughts become your
+          words... [and] keep your habits positive because your habits become
+          your values”. <span class="font-bold"> - Mahatma Gandhi</span>
+        </h3>
+      </div>
+    </div>
+
+    <!-- Completed Habits Section -->
+    <section id="completed-habits">
+      <div class="flex mt-8">
+        <h2 class="mt-10 ml-6">Completed Habits</h2>
+
+        <button class="btn mt-7 ml-5">
+          <p class="paragraph">delete</p>
+          <span class="icon-wrapper">
+            <svg
+              class="icon"
+              width="30px"
+              height="30px"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6 7V18C6 19.1046 6.89543 20 8 20H16C17.1046 20 18 19.1046 18 18V7M6 7H5M6 7H8M18 7H19M18 7H16M10 11V16M14 11V16M8 7V5C8 3.89543 8.89543 3 10 3H14C15.1046 3 16 3.89543 16 5V7M8 7H16"
+                stroke="#000000"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div class="box" id="completed-container">
+        <div class="completed-habits-list"></div>
+      </div>
+    </section>
 
     <!-- Delete Toast Notification -->
-<div
-    id="toast"
-    class="fixed bottom-6 right-6 bg-gray-800 text-white px-5 py-3 rounded-lg shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none">
-</div>
+    <div
+      id="toast"
+      class="fixed bottom-6 right-6 bg-gray-800 text-white px-5 py-3 rounded-lg shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none"
+    ></div>
 
     <script type="text/javascript" src="index.js"></script>
   </body>
