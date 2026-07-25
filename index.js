@@ -39,7 +39,6 @@ const trashIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
 
 //Add habit button click event listener
 addHabitButton.addEventListener("click", () => {
-
   // Create habit record
   const newHabit = {
     id: crypto.randomUUID(),
@@ -50,7 +49,7 @@ addHabitButton.addEventListener("click", () => {
     // Future enhancements for habit tracking could include additional properties such as:
     // completedToday: false, // to track if the habit was completed today
     // streak: 0, // to track the number of consecutive days the habit has been completed
-  }; 
+  };
 
   habitData.push(newHabit);
 
@@ -64,7 +63,7 @@ addHabitButton.addEventListener("click", () => {
           </div>
         </div>
         </div>`;
-        
+
   // Append new habit to the habit container
   habitContainer.insertAdjacentHTML("beforeend", newHabitHTML);
 
@@ -78,8 +77,6 @@ addHabitButton.addEventListener("click", () => {
 const handleListBuild = () => {
   habitContainer.innerHTML = "";
   completedContainer.innerHTML = "";
-
-
 
   habitData.forEach((habit) => {
     let completedClass = "";
@@ -97,7 +94,7 @@ const handleListBuild = () => {
              </div>
              </div>
         `;
-        //   const reversedHabits = [...habitData].reverse();
+      //   const reversedHabits = [...habitData].reverse();
 
       completedContainer.insertAdjacentHTML("beforeend", completedHabitHTML);
     } else {
