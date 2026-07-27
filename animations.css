@@ -22,7 +22,7 @@
 /* simple flower styling */
 .flower-bloom::before {
     content: "🌸";
-   font-size: 64px;
+   font-size: 36px;
    position: absolute;
    bottom: 0;
    left: 50%;

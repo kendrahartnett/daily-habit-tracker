@@ -25,6 +25,13 @@ const toastNotification = document.getElementById("toast-notification");
 const completedHabitsSection = document.querySelector(
   "#completed-habits-section",
 );
+const emptyHabitMessage = document.getElementById("empty-habit-message");
+
+const progressBar = document.getElementById("progress-bar");
+
+const progressText = document.getElementById("progress-text");
+
+const progressMessage = document.getElementById("progress-message");
 
 const buildHabitCard = (habit) => {
   if (habit.completed) {
@@ -49,6 +56,11 @@ const trashIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
 
 //Add habit button click event listener
 addHabitButton.addEventListener("click", () => {
+  const habitName = habitInput.value.trim();
+
+  if (habitName === "") {
+    return;
+  }
   // Create habit record
   const newHabit = {
     id: crypto.randomUUID(),
@@ -81,7 +93,46 @@ addHabitButton.addEventListener("click", () => {
   localStorage.setItem("habits", JSON.stringify(habitData));
 
   habitInput.value = "";
+  emptyHabitMessage.classList.add("hidden");
+  updateProgress();
 });
+
+// Progress Bar funciton
+const updateProgress = () => {
+  const totalHabits = habitData.length;
+
+  const completedHabits = habitData.filter((habit) => habit.completed).length;
+
+  if (totalHabits === 0) {
+    progressBar.style.width = "0%";
+    progressText.textContent = "0 / 0 completed";
+    progressMessage.textContent = "";
+    return;
+  }
+
+  const progressPercentage = (completedHabits / totalHabits) * 100;
+
+  progressBar.style.width = `${progressPercentage}%`;
+
+  progressText.textContent = `${completedHabits} / ${totalHabits} completed`;
+
+  if (completedHabits === totalHabits) {
+    progressMessage.textContent = "Your garden is blooming!";
+  } else if (progressPercentage >= 50) {
+    progressMessage.textContent = "You're more than halfway there!";
+  } else {
+    progressMessage.textContent = "Keep growing, one habit at a time.";
+  }
+};
+
+// Updating empty state in HTML
+const updateEmptyState = () => {
+  if (habitData.length === 0) {
+    emptyHabitMessage.classList.remove("hidden");
+  } else {
+    emptyHabitMessage.classList.add("hidden");
+  }
+};
 
 // Rebuild the UI from the current application state.
 const handleListBuild = () => {
@@ -119,6 +170,8 @@ const handleListBuild = () => {
       habitContainer.insertAdjacentHTML("beforeend", habitHTML);
     }
   });
+  updateProgress();
+  updateEmptyState();
 };
 
 handleListBuild();
@@ -129,8 +182,6 @@ const bloomFlower = () => {
   flower.classList.add("flower-bloom");
   document.getElementById("garden").appendChild(flower);
 };
-
-let doneHabit = "";
 
 // Habit completion function
 const onCompleteClick = (habitId) => {
@@ -147,6 +198,23 @@ const onCompleteClick = (habitId) => {
     habitContainer.innerHTML = "";
     handleListBuild();
   }
+};
+
+// Rebuild the progress garden from saved completed habits
+const buildProgressGarden = () => {
+  const garden = document.getElementById("garden");
+
+  garden.innerHTML = "";
+
+  const completedHabits = habitData.filter((habit) => habit.completed === true);
+
+  completedHabits.forEach(() => {
+    const flower = document.createElement("div");
+
+    flower.classList.add("flower-bloom");
+
+    garden.appendChild(flower);
+  });
 };
 
 // Single Habit deletion function
@@ -188,6 +256,7 @@ confirmDeleteButton.addEventListener("click", () => {
   deleteConfirmationModal.classList.add("hidden");
 
   handleListBuild();
+  buildProgressGarden();
 
   showDeleteCompletedToast("Completed habits deleted.");
 });
@@ -215,3 +284,5 @@ const showToast = (message) => {
     toast.classList.add("opacity-0");
   }, 2500);
 };
+
+buildProgressGarden();
