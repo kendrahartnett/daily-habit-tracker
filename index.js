@@ -33,6 +33,9 @@ const progressText = document.getElementById("progress-text");
 
 const progressMessage = document.getElementById("progress-message");
 
+const today = new Date().toDateString();
+const lastResetDate = localStorage.getItem("lastResetDate");
+
 const buildHabitCard = (habit) => {
   if (habit.completed) {
     completedClass = "text-gray-400 manrope text-xs line-through";
@@ -134,7 +137,24 @@ const updateEmptyState = () => {
   }
 };
 
-// Rebuild the UI from the current application state.
+// Daily habit check reset function
+const checkDailyReset = () => {
+    console.log("daily reset check")
+
+  const today = new Date().toDateString();
+  const lastResetDate = localStorage.getItem("lastResetDate");
+
+  if (lastResetDate !== today) {
+    habitData.forEach((habit) => {
+      habit.completed = false;
+    });
+
+    localStorage.setItem("habits", JSON.stringify(habitData));
+    localStorage.setItem("lastResetDate", today);
+  }
+};
+
+// Rebuild the UI from the current application state
 const handleListBuild = () => {
   habitContainer.innerHTML = "";
   completedContainer.innerHTML = "";
@@ -173,7 +193,7 @@ const handleListBuild = () => {
   updateProgress();
   updateEmptyState();
 };
-
+checkDailyReset();
 handleListBuild();
 
 // Flower bloom animation when habit is completed

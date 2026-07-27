@@ -82,6 +82,7 @@ I intended to build a simple, goal-oriented Habit Tracker that helps users stay 
 ## AI Tools Used
 
 - ChatGPT
+- Codex
 - Gemini
 - GitHub Copilot
 
