@@ -13,6 +13,10 @@ const habitContainer = document.getElementById("habit-container");
 const completedContainer = document.getElementById("completed-container");
 const garden = document.getElementById("garden");
 const deleteAllCompletedButton = document.getElementById("delete-all-completed");
+const deleteConfirmationModal = document.getElementById("delete-confirmation-modal");
+const cancelDeleteButton = document.getElementById("cancel-delete");
+const confirmDeleteButton = document.getElementById("confirm-delete");
+const toastNotification = document.getElementById("toast-notification");
 
 
 const buildHabitCard = (habit) => {
@@ -143,16 +147,39 @@ const onDeleteClick = (habitId) => {
   showToast("Habit deleted successfully!");
 };
 
-// Delete All Completed Habit function
+// Delete All Completed open modal
 const onDeleteAllCompletedClick = () => {
-  console.log("Delete all completed button clicked");
+  deleteConfirmationModal.classList.remove("hidden");
+};
 
+// Cancel delete hide modal
+cancelDeleteButton.addEventListener("click", () => {
+  deleteConfirmationModal.classList.add("hidden");
+});
+
+// Delete All habits confirmed function
+confirmDeleteButton.addEventListener("click", () => {
   habitData = habitData.filter((habit) => !habit.completed);
 
   localStorage.setItem("habits", JSON.stringify(habitData));
 
+  deleteConfirmationModal.classList.add("hidden");
+
   handleListBuild();
+
+  showDeleteCompletedToast("Completed habits deleted.");
+});
+
+const showDeleteCompletedToast = (message) => {
+  toastNotification.textContent = message;
+
+  toastNotification.classList.remove("hidden");
+
+  setTimeout(() => {
+    toastNotification.classList.add("hidden");
+  }, 3000);
 };
+
 
 // Function to show toast notification
 const showToast = (message) => {

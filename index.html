@@ -97,7 +97,7 @@
     </div>
 
     <!-- Completed Habits Section -->
-    <section id="completed-habits">
+    <section id="completed-habits" class="mb-2">
       <div class="flex flex-col mt-8 ml-2">
         <h2 class="mt-10 ml-6">Completed Habits</h2>
 
@@ -115,10 +115,50 @@
       </div>
     </section>
 
+    <!-- Delete All confirmation modal -->
+<div
+  id="delete-confirmation-modal"
+  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+>
+  <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-sm">
+    <h2 class="text-xl font-semibold mb-3">
+      Delete completed habits?
+    </h2>
+
+    <p class="text-gray-600 mb-6">
+      Are you sure you want to delete all completed habits? This cannot be undone.
+    </p>
+
+    <div class="flex justify-end gap-3">
+      <button
+        id="cancel-delete"
+        class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300"
+      >
+        Cancel
+      </button>
+
+      <button
+        id="confirm-delete"
+        class="px-4 py-2 rounded bg-red-500 text-white hover:bg-red-600"
+      >
+        Delete All
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Delete All Toast notification -->
+<div
+  id="toast-notification"
+  class="hidden fixed bottom-6 right-6 bg-gray-500 text-white px-3 py-3 rounded-lg shadow-lg z-50"
+>
+  Completed habits deleted.
+</div>
+
     <!-- Delete Toast Notification -->
     <div
       id="toast"
-      class="fixed bottom-6 right-6 bg-gray-800 text-white px-5 py-3 rounded-lg shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none"
+      class="fixed bottom-6 right-6 bg-gray-800 text-white px-3 py-3 rounded-lg shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none"
     ></div>
 
     <script type="text/javascript" src="index.js"></script>
