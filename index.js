@@ -12,8 +12,18 @@ const habitInput = document.getElementById("habit-input");
 const habitContainer = document.getElementById("habit-container");
 const completedContainer = document.getElementById("completed-container");
 const garden = document.getElementById("garden");
-const selectedFrequency = document.querySelector(
-  'input[name="frequency"]:checked',
+
+const deleteAllCompletedButton = document.getElementById(
+  "delete-all-completed",
+);
+const deleteConfirmationModal = document.getElementById(
+  "delete-confirmation-modal",
+);
+const cancelDeleteButton = document.getElementById("cancel-delete");
+const confirmDeleteButton = document.getElementById("confirm-delete");
+const toastNotification = document.getElementById("toast-notification");
+const completedHabitsSection = document.querySelector(
+  "#completed-habits-section",
 );
 
 const buildHabitCard = (habit) => {
@@ -39,7 +49,6 @@ const trashIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
 
 //Add habit button click event listener
 addHabitButton.addEventListener("click", () => {
-
   // Create habit record
   const newHabit = {
     id: crypto.randomUUID(),
@@ -50,7 +59,7 @@ addHabitButton.addEventListener("click", () => {
     // Future enhancements for habit tracking could include additional properties such as:
     // completedToday: false, // to track if the habit was completed today
     // streak: 0, // to track the number of consecutive days the habit has been completed
-  }; 
+  };
 
   habitData.push(newHabit);
 
@@ -64,7 +73,7 @@ addHabitButton.addEventListener("click", () => {
           </div>
         </div>
         </div>`;
-        
+
   // Append new habit to the habit container
   habitContainer.insertAdjacentHTML("beforeend", newHabitHTML);
 
@@ -79,7 +88,13 @@ const handleListBuild = () => {
   habitContainer.innerHTML = "";
   completedContainer.innerHTML = "";
 
+  const hasCompletedHabits = habitData.some((habit) => habit.completed);
 
+  if (hasCompletedHabits) {
+    completedHabitsSection.classList.remove("hidden");
+  } else {
+    completedHabitsSection.classList.add("hidden");
+  }
 
   habitData.forEach((habit) => {
     let completedClass = "";
@@ -97,7 +112,7 @@ const handleListBuild = () => {
              </div>
              </div>
         `;
-        //   const reversedHabits = [...habitData].reverse();
+      //   const reversedHabits = [...habitData].reverse();
 
       completedContainer.insertAdjacentHTML("beforeend", completedHabitHTML);
     } else {
@@ -105,6 +120,7 @@ const handleListBuild = () => {
     }
   });
 };
+
 handleListBuild();
 
 // Flower bloom animation when habit is completed
@@ -116,7 +132,7 @@ const bloomFlower = () => {
 
 let doneHabit = "";
 
-// Habit completion handler
+// Habit completion function
 const onCompleteClick = (habitId) => {
   console.log(`Complete button clicked for habit ID: ${habitId}`);
   const habitIndex = habitData.findIndex((habit) => habit.id === habitId);
@@ -133,7 +149,7 @@ const onCompleteClick = (habitId) => {
   }
 };
 
-// Habit deletion handler
+// Single Habit deletion function
 const onDeleteClick = (habitId) => {
   console.log(`Delete button clicked for habit ID: ${habitId}`);
 
@@ -145,6 +161,45 @@ const onDeleteClick = (habitId) => {
   habitContainer.innerHTML = "";
   handleListBuild();
   showToast("Habit deleted successfully!");
+};
+
+// Delete All Completed open modal
+const onDeleteAllCompletedClick = () => {
+  deleteConfirmationModal.classList.remove("hidden");
+};
+
+const deleteAllCompletedButtonClick = document.getElementById(
+  "delete-all-completed",
+);
+
+deleteAllCompletedButton.addEventListener("click", onDeleteAllCompletedClick);
+
+// Cancel delete hide modal
+cancelDeleteButton.addEventListener("click", () => {
+  deleteConfirmationModal.classList.add("hidden");
+});
+
+// Delete All habits confirmed function
+confirmDeleteButton.addEventListener("click", () => {
+  habitData = habitData.filter((habit) => !habit.completed);
+
+  localStorage.setItem("habits", JSON.stringify(habitData));
+
+  deleteConfirmationModal.classList.add("hidden");
+
+  handleListBuild();
+
+  showDeleteCompletedToast("Completed habits deleted.");
+});
+
+const showDeleteCompletedToast = (message) => {
+  toastNotification.textContent = message;
+
+  toastNotification.classList.remove("hidden");
+
+  setTimeout(() => {
+    toastNotification.classList.add("hidden");
+  }, 3000);
 };
 
 // Function to show toast notification
