@@ -101,12 +101,17 @@ body {
   font-style: normal;
 }
 
+.completed {
+    margin-top: 10px;
+}
+
 .garden {
   display: flex;
   gap: 12px;
   align-items: center;
-  min-height: 100px;
+  min-height: 10px;
   padding: 1rem;
+   margin-top: -100px;
 }
 
 .flower {

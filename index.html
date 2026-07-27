@@ -70,15 +70,64 @@
           Watch your daily progress garden grow...
         </h3>
 
-        <!-- Garden Animation -->
+
+
+<section
+  id="progress-section"
+  class="w-full max-w-2xl mx-auto mb-8"
+>
+  <div class="flex justify-between items-center mb-2">
+    <h2 class="text-lg font-semibold">
+      Today's Progress
+    </h2>
+
+    <span id="progress-text" class="mt-4">
+      0 / 0 completed
+    </span>
+  </div>
+
+  <div class="w-full bg-gray-200 rounded-full h-4">
+    <div
+      id="progress-bar"
+      class="bg-green-400 h-4 rounded-full transition-all duration-500"
+      style="width: 0%"
+    ></div>
+  </div>
+  <p
+    id="progress-message"
+    class="text-sm text-gray-500 mt-2"
+  >
+    Add a habit to get started.
+  </p>
+
+  <!-- Garden Animation -->
 
         <div id="garden" class="garden"></div>
-        <!-- <h3 class="text-xs -mt-8 flex flex-end">3 of 5 habits completed today</h3> -->
+   
       </div>
+
+</section>
+
+
+
+      
     </div>
 
     <!-- Active Habits Section -->
     <div class="box">
+  <div
+    id="empty-habit-message"
+    class="hidden text-center p-6"
+  >
+    <h2 class="text-xl font-semibold mb-2">
+      Ready to grow?
+    </h2>
+
+    <p class="text-gray-500">
+      Start by adding your first daily habit and watch your garden bloom.
+    </p>
+  </div>
+        
       <div class="habit-card-item">
         <div class="box" id="habit-container">
           <!-- JavaScript renders active habit cards here -->
@@ -97,7 +146,7 @@
     </div>
 
     <!-- Completed Habits Section -->
-    <section id="completed-habits-section" class="hidden mb-2">
+    <section id="completed-habits-section" class="hidden mb-2 mt-10 completed">
       <div class="flex flex-wrap mt-8 ml-2 gap-2">
         <h2 class="">Completed Habits</h2>
 
