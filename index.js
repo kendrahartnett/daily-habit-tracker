@@ -18,7 +18,6 @@ const cancelDeleteButton = document.getElementById("cancel-delete");
 const confirmDeleteButton = document.getElementById("confirm-delete");
 const toastNotification = document.getElementById("toast-notification");
 
-
 const buildHabitCard = (habit) => {
   if (habit.completed) {
     completedClass = "text-gray-400 manrope text-xs line-through";
@@ -76,6 +75,13 @@ addHabitButton.addEventListener("click", () => {
   habitInput.value = "";
 });
 
+// Disable/Enable Delete All button funciton
+const updateDeleteAllButton = () => {
+  const hasCompletedHabits = habitData.some((habit) => habit.completed);
+
+  deleteAllCompletedButton.disabled = !hasCompletedHabits;
+};
+
 // Rebuild the UI from the current application state.
 const handleListBuild = () => {
   habitContainer.innerHTML = "";
@@ -100,11 +106,15 @@ const handleListBuild = () => {
       //   const reversedHabits = [...habitData].reverse();
 
       completedContainer.insertAdjacentHTML("beforeend", completedHabitHTML);
+     
     } else {
       habitContainer.insertAdjacentHTML("beforeend", habitHTML);
+  
     }
   });
+  updateDeleteAllButton();
 };
+
 handleListBuild();
 
 // Flower bloom animation when habit is completed
@@ -151,6 +161,16 @@ const onDeleteClick = (habitId) => {
 const onDeleteAllCompletedClick = () => {
   deleteConfirmationModal.classList.remove("hidden");
 };
+
+const deleteAllCompletedButtonClick =
+    document.getElementById("delete-all-completed");
+
+deleteAllCompletedButton.addEventListener(
+    "click",
+    onDeleteAllCompletedClick
+);
+
+
 
 // Cancel delete hide modal
 cancelDeleteButton.addEventListener("click", () => {
