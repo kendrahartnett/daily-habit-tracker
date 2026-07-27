@@ -32,14 +32,13 @@
           <span class="text-3xl fleur-de-leah-regular text-white"> Bloom </span>
         </h1>
 
-        <p class="text-sm text-white/80 italic">Small habits. Big growth.</p>
+        <p class="text-md text-white/80 italic mr-1"><span class="text-xs">Small habits.</span> Big growth.</p>
       </div>
     </header>
 
     <p class="ml-3 mt-1 text-xs manrope">
       Stay focused, motivated, and in control of your life with
-      <span class="fleur-de-leah-regular text-green-500 text-2xl">Bloom</span>,
-      your personal habit tracker. Build healthy routines, track your daily
+      <span class="fleur-de-leah-regular text-green-500 text-2xl">Bloom</span> .  Build healthy routines, track your daily
       habits, and bloom one day at a time.
     </p>
 
@@ -99,30 +98,17 @@
 
     <!-- Completed Habits Section -->
     <section id="completed-habits">
-      <div class="flex mt-8">
+      <div class="flex flex-col mt-8 ml-2">
         <h2 class="mt-10 ml-6">Completed Habits</h2>
 
-        <button class="btn mt-7 ml-5">
-          <p class="paragraph">delete</p>
-          <span class="icon-wrapper">
-            <svg
-              class="icon"
-              width="30px"
-              height="30px"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M6 7V18C6 19.1046 6.89543 20 8 20H16C17.1046 20 18 19.1046 18 18V7M6 7H5M6 7H8M18 7H19M18 7H16M10 11V16M14 11V16M8 7V5C8 3.89543 8.89543 3 10 3H14C15.1046 3 16 3.89543 16 5V7M8 7H16"
-                stroke="#000000"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></path>
-            </svg>
-          </span>
-        </button>
+           <button
+        id="delete-all-completed"
+        class="bg-green-500 text-white p-1 rounded w-1/4 text-xs"
+        onclick="onDeleteAllCompletedClick()"
+      >
+        Delete All
+      </button>
+
       </div>
       <div class="box" id="completed-container">
         <div class="completed-habits-list"></div>

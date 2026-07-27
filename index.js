@@ -12,9 +12,8 @@ const habitInput = document.getElementById("habit-input");
 const habitContainer = document.getElementById("habit-container");
 const completedContainer = document.getElementById("completed-container");
 const garden = document.getElementById("garden");
-const selectedFrequency = document.querySelector(
-  'input[name="frequency"]:checked',
-);
+const deleteAllCompletedButton = document.getElementById("delete-all-completed");
+
 
 const buildHabitCard = (habit) => {
   if (habit.completed) {
@@ -113,7 +112,7 @@ const bloomFlower = () => {
 
 let doneHabit = "";
 
-// Habit completion handler
+// Habit completion function
 const onCompleteClick = (habitId) => {
   console.log(`Complete button clicked for habit ID: ${habitId}`);
   const habitIndex = habitData.findIndex((habit) => habit.id === habitId);
@@ -130,7 +129,7 @@ const onCompleteClick = (habitId) => {
   }
 };
 
-// Habit deletion handler
+// Habit deletion function
 const onDeleteClick = (habitId) => {
   console.log(`Delete button clicked for habit ID: ${habitId}`);
 
@@ -142,6 +141,17 @@ const onDeleteClick = (habitId) => {
   habitContainer.innerHTML = "";
   handleListBuild();
   showToast("Habit deleted successfully!");
+};
+
+// Delete All Completed Habit function
+const onDeleteAllCompletedClick = () => {
+  console.log("Delete all completed button clicked");
+
+  habitData = habitData.filter((habit) => !habit.completed);
+
+  localStorage.setItem("habits", JSON.stringify(habitData));
+
+  handleListBuild();
 };
 
 // Function to show toast notification
