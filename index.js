@@ -26,6 +26,7 @@ const completedHabitsSection = document.querySelector(
   "#completed-habits-section",
 );
 const emptyHabitMessage = document.getElementById("empty-habit-message");
+const habitError = document.getElementById("habit-error");
 
 const progressBar = document.getElementById("progress-bar");
 
@@ -62,8 +63,11 @@ addHabitButton.addEventListener("click", () => {
   const habitName = habitInput.value.trim();
 
   if (habitName === "") {
+ habitError.classList.remove("hidden");
     return;
   }
+habitError.classList.add("hidden");
+
   // Create habit record
   const newHabit = {
     id: crypto.randomUUID(),
