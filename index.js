@@ -12,11 +12,19 @@ const habitInput = document.getElementById("habit-input");
 const habitContainer = document.getElementById("habit-container");
 const completedContainer = document.getElementById("completed-container");
 const garden = document.getElementById("garden");
-const deleteAllCompletedButton = document.getElementById("delete-all-completed");
-const deleteConfirmationModal = document.getElementById("delete-confirmation-modal");
+
+const deleteAllCompletedButton = document.getElementById(
+  "delete-all-completed",
+);
+const deleteConfirmationModal = document.getElementById(
+  "delete-confirmation-modal",
+);
 const cancelDeleteButton = document.getElementById("cancel-delete");
 const confirmDeleteButton = document.getElementById("confirm-delete");
 const toastNotification = document.getElementById("toast-notification");
+const completedHabitsSection = document.querySelector(
+  "#completed-habits-section",
+);
 
 const buildHabitCard = (habit) => {
   if (habit.completed) {
@@ -75,17 +83,18 @@ addHabitButton.addEventListener("click", () => {
   habitInput.value = "";
 });
 
-// Disable/Enable Delete All button funciton
-const updateDeleteAllButton = () => {
-  const hasCompletedHabits = habitData.some((habit) => habit.completed);
-
-  deleteAllCompletedButton.disabled = !hasCompletedHabits;
-};
-
 // Rebuild the UI from the current application state.
 const handleListBuild = () => {
   habitContainer.innerHTML = "";
   completedContainer.innerHTML = "";
+
+  const hasCompletedHabits = habitData.some((habit) => habit.completed);
+
+  if (hasCompletedHabits) {
+    completedHabitsSection.classList.remove("hidden");
+  } else {
+    completedHabitsSection.classList.add("hidden");
+  }
 
   habitData.forEach((habit) => {
     let completedClass = "";
@@ -106,13 +115,10 @@ const handleListBuild = () => {
       //   const reversedHabits = [...habitData].reverse();
 
       completedContainer.insertAdjacentHTML("beforeend", completedHabitHTML);
-     
     } else {
       habitContainer.insertAdjacentHTML("beforeend", habitHTML);
-  
     }
   });
-  updateDeleteAllButton();
 };
 
 handleListBuild();
@@ -143,7 +149,7 @@ const onCompleteClick = (habitId) => {
   }
 };
 
-// Habit deletion function
+// Single Habit deletion function
 const onDeleteClick = (habitId) => {
   console.log(`Delete button clicked for habit ID: ${habitId}`);
 
@@ -162,15 +168,11 @@ const onDeleteAllCompletedClick = () => {
   deleteConfirmationModal.classList.remove("hidden");
 };
 
-const deleteAllCompletedButtonClick =
-    document.getElementById("delete-all-completed");
-
-deleteAllCompletedButton.addEventListener(
-    "click",
-    onDeleteAllCompletedClick
+const deleteAllCompletedButtonClick = document.getElementById(
+  "delete-all-completed",
 );
 
-
+deleteAllCompletedButton.addEventListener("click", onDeleteAllCompletedClick);
 
 // Cancel delete hide modal
 cancelDeleteButton.addEventListener("click", () => {
@@ -199,7 +201,6 @@ const showDeleteCompletedToast = (message) => {
     toastNotification.classList.add("hidden");
   }, 3000);
 };
-
 
 // Function to show toast notification
 const showToast = (message) => {
