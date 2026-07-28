@@ -30,37 +30,50 @@ body {
 .box {
   display: flex;
   flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem;
 }
 
 .item {
-  width: 30%;
+  flex: 1 1 320px;
+  min-width: 300px;
   height: 140px;
   margin: 10px;
-  margin-left: 20px;
+  /* margin-left: 20px; */
   align-items: center;
 }
 
 .quote-item {
-  width: 28%;
+  flex: 1 1 300px;
+  min-width: 280px;
   height: 140px;
   margin-top: 5px;
-  margin-left: 2px;
+  /* margin-left: 2px; */
   align-items: center;
 }
 
 .next-item {
-  width: 60%;
+   flex: 2 1 500px;
+  min-width: 300px;
   height: 140px;
   margin: 10px;
-  margin-left: 30px;
   align-items: center;
 }
 
 .habit-card-item {
-  width: 65%;
-  margin: 10px;
-  margin-left: 13px;
+  width: 100%;
+  margin: 5px;
   align-items: center;
+}
+
+.habit-card {
+    flex: 0 0 calc(25% - .75rem);
+    min-width: 250px;
 }
 
 .item-card {
@@ -68,6 +81,51 @@ body {
   margin: 5px;
   margin-left: 2px;
   align-items: center;
+}
+
+.habits-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 2;
+    gap: 1.hrem;
+    /* justify-content: flex-start; */
+}
+
+.bottom-section {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+#motivational-quote {
+    flex: 1;
+}
+
+#completed-container {
+    margin-top: 1rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+}
+
+.completed-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    position: sticky;
+    top: 0;
+}
+
+.completed-habits-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.completed-card {
+    flex: 0 0 calc(20% - 0.8rem);
 }
 
 /* FONTS */
@@ -276,4 +334,43 @@ body {
 
 .Btn:hover .svgIcon {
   background-color: rgb(1, 113, 82);
+}
+
+@media (max-width: 1024px) {
+    .habit-card {
+        flex: 0 1 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .habit-card {
+        flex: 0 1 100%;
+    }
+}
+
+@media (max-width: 900px) {
+    .habits-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .habit-card-item, .quote-item {
+        width: 100%;
+        max-width: 100%;
+        flex: none;
+    }
+
+    .quote-item {
+        margin: 0 auto;
+    }
+
+    #habit-container {
+        justify-content: center;
+    }
+
+    .bottom-section {
+        display: flex;
+        flex-direction: column;
+    }
 }
