@@ -1,8 +1,10 @@
-// Load saved habits from localStorage when the app starts.
+// Load saved habits from localStorage when the app starts
 let habitData = JSON.parse(localStorage.getItem("habits")) || [];
 
 window.addEventListener("load", () => {
+  checkDailyReset();
   handleListBuild();
+  buildProgressGarden();
 });
 
 const addHabitButton = document.getElementById("add-habit-button");
@@ -28,13 +30,7 @@ const progressBar = document.getElementById("progress-bar");
 const progressText = document.getElementById("progress-text");
 const progressMessage = document.getElementById("progress-message");
 
-const today = new Date().toDateString();
-const lastResetDate = localStorage.getItem("lastResetDate");
-
 const buildHabitCard = (habit) => {
-  if (habit.completed) {
-    completedClass = "text-gray-400 manrope text-xs line-through";
-  }
   return `
    <div class="box" id="${habit.id}">
     <div class="card-client">
@@ -72,26 +68,12 @@ const addHabit = () => {
 
   habitData.push(newHabit);
 
-  const newHabitHTML = `
-   <div class="box" id="${newHabit.id}">
-    <div class="card-client">
-          <p id="habitId-${newHabit.id}" class="name-client manrope">${newHabit.name}</p>
-          <div class="social-media">
-            <button id="complete-${newHabit.id}" class="mr-2" onclick="onCompleteClick('${newHabit.id}')">${checkIcon}</button>
-            <button id="delete-${newHabit.id}" onclick="onDeleteClick('${newHabit.id}')">${trashIcon}</button>
-          </div>
-        </div>
-        </div>`;
+  habitContainer.insertAdjacentHTML("beforeend", buildHabitCard(newHabit));
 
-  // Append new habit to the habit container
-  habitContainer.insertAdjacentHTML("beforeend", newHabitHTML);
-
-  // Add habit data to localStorage
   localStorage.setItem("habits", JSON.stringify(habitData));
 
   habitInput.value = "";
-  emptyHabitMessage.classList.add("hidden");
-  updateProgress();
+  handleListBuild();
 };
 
 addHabitButton.addEventListener("click", addHabit);
@@ -111,7 +93,7 @@ const updateProgress = () => {
   if (totalHabits === 0) {
     progressBar.style.width = "0%";
     progressText.textContent = "0 / 0 completed";
-    progressMessage.textContent = "";
+    progressMessage.textContent = "Add a habit to get started.";
     return;
   }
 
@@ -141,8 +123,6 @@ const updateEmptyState = () => {
 
 // Daily habit check reset function
 const checkDailyReset = () => {
-  console.log("daily reset check");
-
   const today = new Date().toDateString();
   const lastResetDate = localStorage.getItem("lastResetDate");
 
@@ -154,6 +134,21 @@ const checkDailyReset = () => {
     localStorage.setItem("habits", JSON.stringify(habitData));
     localStorage.setItem("lastResetDate", today);
   }
+};
+
+// Rebuild the progress garden from saved completed habits
+const buildProgressGarden = () => {
+  const garden = document.getElementById("garden");
+
+  garden.innerHTML = "";
+
+  const completedHabits = habitData.filter((habit) => habit.completed);
+
+  completedHabits.forEach(() => {
+    const flower = document.createElement("div");
+    flower.classList.add("flower-bloom");
+    garden.appendChild(flower);
+  });
 };
 
 // Rebuild the UI from the current application state
@@ -185,8 +180,6 @@ const handleListBuild = () => {
              </div>
              </div>
         `;
-      //   const reversedHabits = [...habitData].reverse();
-
       completedContainer.insertAdjacentHTML("beforeend", completedHabitHTML);
     } else {
       habitContainer.insertAdjacentHTML("beforeend", habitHTML);
@@ -195,8 +188,6 @@ const handleListBuild = () => {
   updateProgress();
   updateEmptyState();
 };
-checkDailyReset();
-handleListBuild();
 
 // Flower bloom animation when habit is completed
 const bloomFlower = () => {
@@ -207,7 +198,6 @@ const bloomFlower = () => {
 
 // Habit completion function
 const onCompleteClick = (habitId) => {
-  console.log(`Complete button clicked for habit ID: ${habitId}`);
   const habitIndex = habitData.findIndex((habit) => habit.id === habitId);
 
   const habit = habitData[habitIndex];
@@ -215,34 +205,14 @@ const onCompleteClick = (habitId) => {
   if (!habit.completed) {
     habit.completed = true;
     bloomFlower();
-    doneHabit = habitData[habitIndex];
     localStorage.setItem("habits", JSON.stringify(habitData));
     habitContainer.innerHTML = "";
     handleListBuild();
   }
 };
 
-// Rebuild the progress garden from saved completed habits
-const buildProgressGarden = () => {
-  const garden = document.getElementById("garden");
-
-  garden.innerHTML = "";
-
-  const completedHabits = habitData.filter((habit) => habit.completed === true);
-
-  completedHabits.forEach(() => {
-    const flower = document.createElement("div");
-
-    flower.classList.add("flower-bloom");
-
-    garden.appendChild(flower);
-  });
-};
-
 // Single Habit deletion function
 const onDeleteClick = (habitId) => {
-  console.log(`Delete button clicked for habit ID: ${habitId}`);
-
   const habitToRemoveIndex = habitData.findIndex(
     (habit) => habit.id === habitId,
   );
@@ -257,10 +227,6 @@ const onDeleteClick = (habitId) => {
 const onDeleteAllCompletedClick = () => {
   deleteConfirmationModal.classList.remove("hidden");
 };
-
-const deleteAllCompletedButtonClick = document.getElementById(
-  "delete-all-completed",
-);
 
 deleteAllCompletedButton.addEventListener("click", onDeleteAllCompletedClick);
 
@@ -283,6 +249,7 @@ confirmDeleteButton.addEventListener("click", () => {
   showDeleteCompletedToast("Completed habits deleted.");
 });
 
+// Delete All toast notification function
 const showDeleteCompletedToast = (message) => {
   toastNotification.textContent = message;
 
@@ -293,7 +260,7 @@ const showDeleteCompletedToast = (message) => {
   }, 3000);
 };
 
-// Function to show toast notification
+// Delete toast notification function
 const showToast = (message) => {
   const toast = document.getElementById("toast");
 
@@ -306,5 +273,3 @@ const showToast = (message) => {
     toast.classList.add("opacity-0");
   }, 2500);
 };
-
-buildProgressGarden();
