@@ -101,15 +101,13 @@ body {
   font-style: normal;
 }
 
-
-
 .garden {
   display: flex;
   gap: 12px;
   align-items: center;
   min-height: 10px;
   padding: 1rem;
-   margin-top: -100px;
+  margin-top: -100px;
 }
 
 .flower {
@@ -200,7 +198,6 @@ body {
   fill: currentColor;
 }
 
-/*-- Tooltip --*/
 .tooltip-social {
   background: #262626;
   display: block;
@@ -239,7 +236,7 @@ body {
 }
 
 /* Delete-All Button */
-/* From Uiverse.io by vinodjangid07 */ 
+/* From Uiverse.io by vinodjangid07 */
 .Btn {
   width: 100px;
   height: 35px;
