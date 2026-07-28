@@ -5,17 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="index.css" />
     <link rel="stylesheet" href="animations.css" />
-
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css"
-      rel="stylesheet"
-      type="text/css"
-    />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Font APIs Section-->
+    <!-- Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -46,7 +38,7 @@
     </p>
 
     <div class="box">
-      <!-- Add Habit Form-->
+      <!-- Add Habit Form -->
       <div class="item max-w-sm shadow-2xl rounded-lg bg-white p-2">
         <h2 class="text-sm font-semibold mb-4">Add a New Habit</h2>
         <form id="habit-form" class="flex flex-col gap-4">
@@ -73,9 +65,9 @@
 
       <div class="next-item">
         <!-- Progress Bar -->
-        <h3 class="text-emerald-600 mt-3">
+        <p class="text-emerald-600 mt-3">
           Watch your daily progress garden grow...
-        </h3>
+        </p>
 
         <section id="progress-section" class="w-full max-w-2xl mx-auto mb-8">
           <div class="flex justify-between items-center mb-2">
@@ -114,22 +106,26 @@
           </div>
         </div>
 
-        <!-- Motivational Quotes Section -->
-        <div class="quote-item">
+        <!-- Motivational Quote Section -->
+        <section
+          id="motivational-quote"
+          class="quote-item"
+          aria-label="Daily inspiration"
+        >
           <h3 class="mb-2">🌱 Daily Inspiration</h3>
-          <h3 class="italic text-xs">
+
+          <blockquote class="italic text-xs">
             “Keep your thoughts positive because your thoughts become your
             words... [and] keep your habits positive because your habits become
-            your values”. <span class="font-bold"> - Mahatma Gandhi</span>
-          </h3>
-        </div>
+            your values”.
+
+            <cite class="font-bold not-italic">— Mahatma Gandhi</cite>
+          </blockquote>
+        </section>
       </div>
 
       <!-- Completed Habits Section -->
-      <section
-        id="completed-habits-section"
-        class="hidden mb-2 mt-1 completed"
-      >
+      <section id="completed-habits-section" class="hidden mb-2 mt-1 completed">
         <div class="flex flex-wrap mt-6 ml-2 gap-2">
           <h2 class="">Completed Habits</h2>
 
