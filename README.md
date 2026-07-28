@@ -6,7 +6,7 @@ A simple daily habit tracker that helps users build consistency, visualize their
 
 ## Live Demo
 
-[View my project here.](github-pages-link)
+[View my project here.](https://kendrahartnett.github.io/daily-habit-tracker/)
 
 ---
 
