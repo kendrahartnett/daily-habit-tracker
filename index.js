@@ -32,7 +32,7 @@ const progressMessage = document.getElementById("progress-message");
 
 const buildHabitCard = (habit) => {
   return `
-   <div class="box" id="${habit.id}">
+   <div class="habits-container" id="${habit.id}">
     <div class="card-client">
           <p id="habitId-${habit.id}" class="name-client manrope">${habit.name}</p>
           <div class="social-media">
@@ -171,8 +171,8 @@ const handleListBuild = () => {
     if (habit.completed === true) {
       completedClass = "text-gray-400 line-through";
       const completedHabitHTML = `      
-             <div class="box ml-4" id="${habit.id}">
-                 <div class="w-full max-w-sm shadow-lg rounded p-2 bg-white mt-4 ml-2">
+             <div class="ml-4" id="${habit.id}">
+                 <div class="habit-card w-full md:w-[-48%] xl:w-[31%] max-w-sm shadow-lg rounded p-2 bg-white mt-4 ml-2">
                 <div class="mb-2">
                  <span class="">🌱</span>
                  <span id="habitId-${habit.id}" class="edu-font ${completedClass}">${habit.name}</span>

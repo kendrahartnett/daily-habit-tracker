@@ -90,8 +90,9 @@
         </section>
       </div>
 
+      <div class="bottom-section">
       <!-- Active Habits Section -->
-      <div class="box">
+      <div class="habits-container">
         <div id="empty-habit-message" class="hidden text-center p-6">
           <h2 class="text-xl font-semibold mb-2">Ready to grow?</h2>
 
@@ -101,12 +102,15 @@
         </div>
 
         <div class="habit-card-item">
-          <div class="box" id="habit-container">
+          <div class="habits-container" id="habit-container">
             <!-- JavaScript renders active habit cards here -->
           </div>
         </div>
 
-        <!-- Motivational Quote Section -->
+  
+      </div>
+
+            <!-- Motivational Quote Section -->
         <section
           id="motivational-quote"
           class="quote-item"
@@ -122,11 +126,12 @@
             <cite class="font-bold not-italic">— Mahatma Gandhi</cite>
           </blockquote>
         </section>
-      </div>
+
+        </div>
 
       <!-- Completed Habits Section -->
       <section id="completed-habits-section" class="hidden mb-2 mt-1 completed">
-        <div class="flex flex-wrap mt-6 ml-2 gap-2">
+        <div class="completed-header flex flex-wrap ml-2 gap-2">
           <h2 class="">Completed Habits</h2>
 
           <button id="delete-all-completed" class="Btn -mt-1">
@@ -146,7 +151,9 @@
           </button>
         </div>
         <div class="box" id="completed-container">
-          <div class="completed-habits-list"></div>
+          <div class="completed-habits-list">
+            <div class="completed-card"></div>
+          </div>
         </div>
       </section>
 
