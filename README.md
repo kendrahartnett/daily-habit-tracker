@@ -40,12 +40,12 @@ Markdown planning document to organize project requirements, features,
 and development steps. Breaking the project into smaller milestones
 helped me stay focused and track progress throughout development.
 
-I started by setting up the project structure and repository, then
+Next, I set up the project structure and repository. Then I
 created the initial user interface with HTML and CSS. I added the core
 functionality using JavaScript, allowing users to create, read, update
 (mark habits as complete), and delete habits.
 
-I chose localStorage to persist habit data between browser sessions
+I chose to use localStorage for data persistence between browser sessions
 without requiring a backend. After completing the MVP, I refined the
 user experience and visual design by adding a progress bar, progress
 garden, completion animation, daily reset functionality, and
