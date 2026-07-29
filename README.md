@@ -71,6 +71,7 @@ confirmation feedback for deleting completed habits.
 - Habit completion animation
 - Delete confirmation modal
 - Toast notifications for user feedback
+- Responsive web design
 
 ---
 
@@ -138,9 +139,9 @@ Or, if using VS Code:
 
 ## Screenshots
 
-![Bloom habit tracker](images/bloom-daily-habit.png)
+![Bloom habit tracker](images/updated-bloom.png)
 
-![Bloom habit tracker add](images/bloom-daily-add.png)
+![Bloom habit tracker add](images/updated-bloom-habits.png)
 
 ![Bloom habit tracker progress bar](images/bloom-progress-bar.png)
 
