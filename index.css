@@ -40,11 +40,9 @@ body {
 }
 
 .item {
-  flex: 1 1 320px;
-  min-width: 300px;
+  flex: 1 1 220px;
+  min-width: 220px;
   height: 140px;
-  margin: 10px;
-  /* margin-left: 20px; */
   align-items: center;
 }
 
@@ -53,15 +51,13 @@ body {
   min-width: 280px;
   height: 140px;
   margin-top: 5px;
-  /* margin-left: 2px; */
   align-items: center;
 }
 
 .next-item {
-   flex: 2 1 500px;
+   flex: 2 1 320px;
   min-width: 300px;
   height: 140px;
-  margin: 10px;
   align-items: center;
 }
 
